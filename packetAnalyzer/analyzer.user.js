@@ -10,7 +10,13 @@
 
 (() => {
 	window.stop();
-	const OUT = 'https://rawgit.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io/master/packetAnalyzer/sniff.js';
+	const LOAD_LOCAL = (typeof localStorage['load_local_script'] !== 'undefined');
+	var OUT = null;
+	if (LOAD_LOCAL) {
+		OUT = "http://127.0.0.1/m.io/packetAnalyzer/sniff.js";
+	} else {
+		OUT = 'https://rawgit.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io/master/packetAnalyzer/sniff.js';
+	}
 	const SCRIPT_OUT = '<script src="' + OUT + '"></script>\n';
 	GM_xmlhttpRequest({
 		method: 'GET',
