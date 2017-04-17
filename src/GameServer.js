@@ -24,6 +24,7 @@ class GameServer {
 			this.config = config;
 			this.io = null; // The socket.io server
 			this.msgHandler = new MessageHandler(this);
+			this.players = [];
 		}
 	}
 }

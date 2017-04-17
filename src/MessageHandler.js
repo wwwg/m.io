@@ -3,3 +3,4 @@ class MessageHandler {
 		this.gameServer = gameServer;
 	}
 }
+module.exports = MessageHandler;
