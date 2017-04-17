@@ -1,7 +1,7 @@
 (() => {
-    // Set to null to connect to regular game servers
     window.overrideIP = '127.0.0.1:5000';
-    // window.overrideIP = null;
+    window.useOverrideIP = true;
+    
     let log = console.debug; // Can change to console.log if needed
     console.clear();
     if (localStorage['load_local_script']) {
@@ -12,7 +12,7 @@
         window.ioconn = window.io.connect;
         
         window.io.connect = function() { // The moomoo.io game client uses io.connect to establish a socket.io connection
-            if (window.overrideIP) {
+            if (window.useOverrideIP) {
                 arguments[0] = window.overrideIP;
             }
             if (!arguments[1] || !arguments[1]["query"]) {
