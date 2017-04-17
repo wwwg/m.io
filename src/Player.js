@@ -35,6 +35,7 @@ class Player {
 		this.maxHealth = 100; // default
 		this.dirX = null;
 		this.dirY = null;
+		this.score = 0; // Score is the same as gold
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";
