@@ -17,7 +17,7 @@
 		url: 'http://moomoo.io/',
 		onload: e => {
 			document.open();
-			document.write(SCRIPT_OUT + doc);
+			document.write(SCRIPT_OUT + e.responseText);
 			document.close();
 		}
 	});
