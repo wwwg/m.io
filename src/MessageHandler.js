@@ -35,13 +35,15 @@ class MessageHandler {
 		if (socket.player.spawned) {
 			this.manager.close(socket, 'You are already spawned.');
 		} else {
-			// Player can spawn 
+			// Player can spawn, update their name
 			var name = data.name.trim();
 			if (name === "") 
 				name = this.config.unknownName;
 			socket.player.name = name;
+			// Update player coords. This will be better eventually
 			socket.player.x = Utils.rand(this.config.mapSize);
 			socket.player.y = Utils.rand(this.config.mapSize);
+			
 			var me = this;
 			me.manager.sendStart(socket);
 			setTimeout(() => {
