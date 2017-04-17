@@ -1,6 +1,7 @@
 // External package imports
 var uws = require('uws');
 var io = require('socket.io');
+const PACKET = require('./utils/packetCodes');
 
 // Local imports
 var MessageHandler = require('./MessageHandler');
@@ -25,7 +26,7 @@ class GameServer {
 			this.manager.add(socket);
 			me.msgHandler.conn.call(me, socket);
 
-			socket.on('1', data => {
+			socket.on(PACKET.PLAYER_START, data => {
 				// Player spawn packet, the data is an object with one property
 				return me.msgHandler.spawn.call(me, socket, data);
 			});

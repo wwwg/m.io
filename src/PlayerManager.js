@@ -1,5 +1,6 @@
 var Player = require('./Player');
 var log = require('./utils/Logger');
+const PACKET = require('./utils/packetCodes');
 
 class PlayerManager {
 	updateTime(socket) {
@@ -7,16 +8,16 @@ class PlayerManager {
 		socket.emit('dtv', t);
 	}
 	addPlayer(socket, player) {
-		socket.emit('2', player.getData(), false);
+		socket.emit(PACKET.PLAYER_ADD, player.getData(), false);
 	}
 	addSelfPlayer(socket) {
-		socket.emit('2', socket.player.getData(), true);
+		socket.emit(PACKET.PLAYER_ADD, socket.player.getData(), true);
 	}
 	removeIndex(i) {
 		this.players.splice(i, 1);
 	}
 	sendStart(socket) {
-		socket.emit("1", socket.player.sid);
+		socket.emit(PACKET.PLAYER_START, socket.player.sid);
 	}
 	close(socket, reason) {
 		for (var i = 0; i < this.players.length; ++i) {
