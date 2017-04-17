@@ -19,6 +19,10 @@ class MessageHandler {
 			this.manager.updateTime(socket);
 		}
 	}
+	disconn(socket) {
+		log.all('Player disconnected,', socket.player.name);
+		this.manager.remove(socket);
+	}
 	angle(socket, ang) {
 		// Player angle update
 		socket.player.angle = ang;

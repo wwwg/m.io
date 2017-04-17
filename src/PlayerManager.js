@@ -26,7 +26,7 @@ class PlayerManager {
 	}
 	remove(socket) {
 		for (var i = 0; i < this.players.length; ++i) {
-			if (this.players[i].sid === socket.player.sid) {
+			if (this.players[i].player.sid == socket.player.sid) {
 				this.removeIndex(i);
 				break;
 			}
