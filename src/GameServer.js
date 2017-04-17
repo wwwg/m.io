@@ -62,6 +62,9 @@ class GameServer {
 			if (!config.mapSize) {
 				config.mapSize = 12e3; // Default map size, the client currently only supports a map size of 12,000
 			}
+			if (!config.snowStart) {
+				config.snowStart = 2400; // Default snow biom start X
+			}
 			this.config = config;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game

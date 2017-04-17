@@ -45,6 +45,7 @@ class MessageHandler {
 			setTimeout(() => {
 				// Send player data to player
 				me.manager.addSelfPlayer(socket);
+				log.all("Spawned player with name", socket.player.name);
 			}, 10);
 		}
 	}
