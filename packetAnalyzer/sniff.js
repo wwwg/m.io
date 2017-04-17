@@ -1,7 +1,7 @@
 (() => {
     // Set to null to connect to regular game servers
-    // window.overrideIP = '127.0.0.1:5000';
-    window.overrideIP = null;
+    window.overrideIP = '127.0.0.1:5000';
+    // window.overrideIP = null;
     let log = console.debug; // Can change to console.log if needed
     console.clear();
     if (localStorage['load_local_script']) {

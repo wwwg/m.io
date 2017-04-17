@@ -30,6 +30,13 @@ class GameServer {
 			});
 		});
 	}
+	clockCallback() {
+		var me = this;
+		if (me.alive) {
+			// TODO: Implement clock based game logic
+			me.currentTick++;
+		}
+	}
 	constructor(config) {
 		if (!config) {
 			throw new Error('Gameserver must be constructed with a configuration object.');
@@ -38,17 +45,30 @@ class GameServer {
 			throw new Error('Gameserver config requires a valid port.');
 			return;
 		} else {
-			this.config = config;
 			if (config.logLevel) { // Update log level
 				log.lvl = config.logLevel;
 			}
+			// Adjust configuration
 			if (!config.unknownName) {
 				config.unknownName = "unknown";
 			}
+			if (!config.tickInterval) {
+				config.tickInterval = 50;
+			}
+			if (!config.mapSize) {
+				config.mapSize = 12e3; // Default map size, the client currently only supports a map size of 12,000
+			}
+			this.config = config;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game
+			this.currentTick = 0;
+			this.alive = true;
 			this.msgHandler = new MessageHandler(this);
 			this.manager = new Manager(this);
+			var me = this;
+			me.gameClock = setInterval(() => {
+				me.clockCallback.call(me); // Make sure the clock callback is called within the context of the gameServer
+			}, me.tickInterval);
 		}
 	}
 }
