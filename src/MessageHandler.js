@@ -2,6 +2,12 @@ var Player = require('./Player');
 var log = require('./Logger');
 
 class MessageHandler {
+	checkConnection(socket) {
+		if (!socket.player.connected) {
+			this.manager.close(socket, 'Connection handshake not completed.');
+		}
+		return socket.player.connected;
+	}
 	connPacket(socket) {
 		log.all('Socket sent connect packet.');
 		if (socket.player.connected) {
@@ -13,6 +19,8 @@ class MessageHandler {
 		}
 	}
 	spawn(socket, data) {
+		if (!this.checkConnection())
+			return;
 		console.log('Player spawn packet send with data', data);
 		// TODO: Handle player spawn
 	}
