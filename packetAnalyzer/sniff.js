@@ -1,6 +1,9 @@
 (() => {
     let log = console.debug; // Can change to console.log if needed
     console.clear();
+    if (localStorage['load_local_script']) {
+        log('Local script loaded');
+    }
     let init = () => {
         // The Socket.io script tag has loaded
         window.ioconn = window.io.connect;
