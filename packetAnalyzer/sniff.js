@@ -28,6 +28,47 @@
                             // Spawn packet
                             log("Player spawn detected. name:", mainData.name);
                             break;
+                        case "2":
+                            // Angle packet
+                            // Commented out because of spam
+                            // log("Ange update", mainData);
+                            break;
+                        case "connect":
+                            log('Connection handshake sent.');
+                            break;
+                        case "ping":
+                            log('Ping!');
+                            break;
+                        case "pong":
+                            log('Pong!');
+                            break;
+                        case "3":
+                            var move = "";
+                            switch(mainData) {
+                                case "u":
+                                    move = "Up";
+                                    break;
+                                case "d":
+                                    move = "Down";
+                                    break;
+                                case "l":
+                                    move = "Left";
+                                    break;
+                                case "r":
+                                    move = "Right";
+                                    break;
+                            }
+                            log('Move direction:', move, "isMoving:", !!arguments[2]);
+                            break;
+                        case "7":
+                            log('Auto attack toggled');
+                            break;
+                        case "4":
+                            log('Attacking:', !!mainData);
+                            break;
+                        case "rk":
+                            log('Key reset');
+                            break;
                         default:
                             log("Unknown outgoing packet with args", arguments);
                             break;
