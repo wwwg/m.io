@@ -93,6 +93,10 @@
                 s.on('2', (data, isYou) => {
                     console.log('Add player', data, 'isYou', isYou);
                 });
+                s.on("connect_error", err => {
+                    console.error(err);
+                    alert("Server connection error:\n" + err.toString());
+                });
                 // TODO: capture more incoming traffic
 
                 return s;
