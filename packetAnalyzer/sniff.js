@@ -1,5 +1,6 @@
 (() => {
     let log = console.debug; // Can change to console.log if needed
+    console.clear();
     let init = () => {
         // The Socket.io script tag has loaded
         window.ioconn = window.io.connect;
