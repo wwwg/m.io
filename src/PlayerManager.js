@@ -13,6 +13,9 @@ class PlayerManager {
 	addSelfPlayer(socket) {
 		socket.emit(PACKET.PLAYER_ADD, socket.player.getData(), true);
 	}
+	sendRawUpdate(socket, rawData) {
+		socket.emit(PACKET.PLAYER_UPDATE, rawData);
+	}
 	removeIndex(i) {
 		this.players.splice(i, 1);
 	}

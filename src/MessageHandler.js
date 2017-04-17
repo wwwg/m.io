@@ -47,6 +47,8 @@ class MessageHandler {
 			setTimeout(() => {
 				// Send player data to player
 				me.manager.addSelfPlayer(socket);
+				// New players get an empty update packet
+				me.manager.sendRawUpdate(socket, []);
 				log.all("Spawned player with name", socket.player.name);
 			}, 10);
 		}

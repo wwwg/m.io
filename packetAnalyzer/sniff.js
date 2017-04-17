@@ -97,6 +97,10 @@
                     console.error(err);
                     alert("Server connection error:\n" + err.toString());
                 });
+                s.on('3', data => {
+                    // Player update
+                    console.log("Raw player update info:", data);
+                });
                 // TODO: capture more incoming traffic
 
                 return s;
