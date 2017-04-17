@@ -1,6 +1,10 @@
+// External package imports
 var uws = require('uws');
 var io = require('socket.io');
+
+// Local imports
 var MessageHandler = require('./MessageHandler');
+var Player = require('./Player');
 
 class GameServer {
 	start() {
@@ -11,6 +15,14 @@ class GameServer {
 			noServer: true,
 			clientTracking: false,
 			perMessageDeflate: false
+		});
+		me.io.on('connection', socket => {
+			socket.player = new Player(socket);
+			me.players.push(socket);
+			socket.on('1', data => {
+				// Player spawn packet, the data is an object with one property
+				return me.msgHandler.call(me, socket, data);
+			});
 		});
 	}
 	constructor(config) {

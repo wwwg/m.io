@@ -1,6 +1,6 @@
 class Player {
-	constructor() {
-		// TODO: Add player class properties
+	constructor(socket) {
+		this.socket = socket;
 	}
 }
 module.exports = Player;
