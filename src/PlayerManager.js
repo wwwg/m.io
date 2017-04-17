@@ -15,6 +15,9 @@ class PlayerManager {
 	removeIndex(i) {
 		this.players.splice(i, 1);
 	}
+	sendStart(socket) {
+		socket.emit("1", socket.player.sid);
+	}
 	close(socket, reason) {
 		for (var i = 0; i < this.players.length; ++i) {
 			if (socket.player.sid == this.players[i].sid) {

@@ -42,6 +42,7 @@ class MessageHandler {
 			socket.player.x = Utils.rand(this.config.mapSize);
 			socket.player.y = Utils.rand(this.config.mapSize);
 			var me = this;
+			me.manager.sendStart(socket);
 			setTimeout(() => {
 				// Send player data to player
 				me.manager.addSelfPlayer(socket);
