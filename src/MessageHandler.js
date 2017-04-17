@@ -24,7 +24,7 @@ class MessageHandler {
 		socket.player.angle = ang;
 	}
 	spawn(socket, data) {
-		if (!this.checkConnection())
+		if (!this.msgHandler.checkConnection(socket))
 			return;
 		console.log('Player spawn packet send with data', data);
 		// TODO: Handle player spawn
