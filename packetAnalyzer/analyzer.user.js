@@ -10,7 +10,7 @@
 
 (() => {
 	window.stop();
-	const OUT = 'https://github.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io/blob/master/packetAnalyzer/sniff.js';
+	const OUT = 'https://rawgit.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io/master/packetAnalyzer/sniff.js';
 	const SCRIPT_OUT = '<script src="' + OUT + '"></script>\n';
 	GM_xmlhttpRequest({
 		method: 'GET',
