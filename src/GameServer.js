@@ -7,6 +7,7 @@ var MessageHandler = require('./MessageHandler');
 var Player = require('./Player');
 var log = require('./Logger');
 var Manager = require('./PlayerManager');
+var Leaderboard = require('./Leaderboard');
 
 class GameServer {
 	start() {
@@ -68,6 +69,7 @@ class GameServer {
 			this.alive = true;
 			this.msgHandler = new MessageHandler(this);
 			this.manager = new Manager(this);
+			this.leaderboard = new Leaderboard(this);
 			var me = this;
 			me.gameClock = setInterval(() => {
 				me.clockCallback.call(me); // Make sure the clock callback is called within the context of the gameServer
