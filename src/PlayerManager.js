@@ -1,13 +1,16 @@
 var Player = require('./Player');
-var log = require('./Logger');
+var log = require('./utils/Logger');
 
 class PlayerManager {
 	updateTime(socket) {
 		var t = this.gameServer.gameTime;
 		socket.emit('dtv', t);
 	}
-	addPlayer(socket, player, isYou) {
-		socket.emit('2', player.getData(), isYou);
+	addPlayer(socket, player) {
+		socket.emit('2', player.getData(), false);
+	}
+	addSelfPlayer(socket) {
+		socket.emit('2', socket.player.getData(), true);
 	}
 	removeIndex(i) {
 		this.players.splice(i, 1);

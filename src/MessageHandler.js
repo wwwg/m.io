@@ -1,5 +1,6 @@
 var Player = require('./Player');
-var log = require('./Logger');
+var log = require('./utils/Logger');
+const Utils = require('./utils/Utils');
 
 class MessageHandler {
 	checkConnection(socket) {
@@ -38,6 +39,13 @@ class MessageHandler {
 			if (name === "") 
 				name = this.config.unknownName;
 			socket.player.name = name;
+			socket.player.x = Utils.rand(this.config.mapSize);
+			socket.player.y = Utils.rand(this.config.mapSize);
+			var me = this;
+			setTimeout(() => {
+				// Send player data to player
+				me.manager.addSelfPlayer(socket);
+			}, 10);
 		}
 	}
 	constructor(gameServer) {
