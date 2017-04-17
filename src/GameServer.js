@@ -5,6 +5,7 @@ var io = require('socket.io');
 // Local imports
 var MessageHandler = require('./MessageHandler');
 var Player = require('./Player');
+var log = require('./Logger');
 
 class GameServer {
 	start() {
@@ -16,7 +17,9 @@ class GameServer {
 			clientTracking: false,
 			perMessageDeflate: false
 		});
+		log.info('Started GameServer on port ' + me.config.port);
 		me.io.on('connection', socket => {
+			log.all('New connection accepted.');
 			socket.player = new Player(socket);
 			me.players.push(socket);
 			socket.on('1', data => {
@@ -34,6 +37,9 @@ class GameServer {
 			return;
 		} else {
 			this.config = config;
+			if (config.logLevel) { // Update log level
+				log.lvl = config.logLevel;
+			}
 			this.io = null; // The socket.io server
 			this.msgHandler = new MessageHandler(this);
 			this.players = [];
