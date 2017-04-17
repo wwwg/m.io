@@ -4,6 +4,7 @@
 // @description  Captures incoming and outgoing traffic between the Moomoo.io game server. 
 // @author       The m.io project
 // @match        http://moomoo.io/*
+// @match		 http://moomootest-env.us-west-2.elasticbeanstalk.com/*
 // @grant        GM_xmlhttpRequest
 // @run-at       document-start
 // ==/UserScript==
