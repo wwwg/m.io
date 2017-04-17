@@ -6,6 +6,7 @@ var io = require('socket.io');
 var MessageHandler = require('./MessageHandler');
 var Player = require('./Player');
 var log = require('./Logger');
+var Manager = require('./PlayerManager');
 
 class GameServer {
 	start() {
@@ -20,11 +21,14 @@ class GameServer {
 		log.info('Started GameServer on port ' + me.config.port);
 		me.io.on('connection', socket => {
 			log.all('New connection accepted.');
-			socket.player = new Player(socket);
-			me.players.push(socket);
+			this.manager.add(socket);
+			
 			socket.on('1', data => {
 				// Player spawn packet, the data is an object with one property
-				return me.msgHandler.call(me, socket, data);
+				return me.msgHandler.spawn.call(me, socket, data);
+			});
+			socket.on('connect', () => {
+				return me.msgHandler.connPacket.call(me, socket);
 			});
 		});
 	}
@@ -42,7 +46,7 @@ class GameServer {
 			}
 			this.io = null; // The socket.io server
 			this.msgHandler = new MessageHandler(this);
-			this.players = [];
+			this.manager = new Manager(this);
 		}
 	}
 }
