@@ -1,6 +1,7 @@
 (() => {
     // Set to null to connect to regular game servers
-    window.overrideIP = '127.0.0.1:5000';
+    // window.overrideIP = '127.0.0.1:5000';
+    window.overrideIP = null;
     let log = console.debug; // Can change to console.log if needed
     console.clear();
     if (localStorage['load_local_script']) {
@@ -88,6 +89,9 @@
                 });
                 s.on('1', mySid => {
                     console.log('I recieved my SID:', mySid);
+                });
+                s.on('2', (data, isYou) => {
+                    console.log('Add player', data, 'isYou', isYou);
                 });
                 // TODO: capture more incoming traffic
 
