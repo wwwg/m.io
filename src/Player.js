@@ -25,6 +25,7 @@ class Player {
 		this.socket = socket;
 		this.connected = false;
 		this.spawned = false;
+		this.alive = false;
 		this.sid = 0;
 		this.angle = 0;
 		this.x = -1;

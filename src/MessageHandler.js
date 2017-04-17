@@ -52,6 +52,7 @@ class MessageHandler {
 				// New players get an empty update packet
 				me.manager.sendRawUpdate(socket, []);
 				log.all("Spawned player with name", socket.player.name);
+				socket.player.alive = true;
 			}, 10);
 		}
 	}

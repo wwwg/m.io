@@ -38,7 +38,17 @@ class GameServer {
 	clockCallback() {
 		var me = this;
 		if (me.alive) {
-			// TODO: Implement clock based game logic
+			for (var i = 0; i < me.manager.players.length; ++i) {
+				var p = me.manager.players[i];
+				if (p.player.alive) {
+					// Handle alive players
+					var near = me.manager.getNearPlayers(p);
+					console.log(near);
+				} else {
+					// Handle dead / idle players
+				}
+			}
+			// TODO: Implement more clock based game logic
 			me.currentTick++;
 		}
 	}
@@ -65,6 +75,10 @@ class GameServer {
 			}
 			if (!config.snowStart) {
 				config.snowStart = 2400; // Default snow biom start X
+			}
+			if (!config.updateRadius) {
+				// Players will be send information about players within 500 units of them
+				config.updateRadius = 500;
 			}
 			this.config = config;
 			this.io = null; // The socket.io server
