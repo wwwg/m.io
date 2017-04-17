@@ -6,6 +6,9 @@ class PlayerManager {
 		var t = this.gameServer.gameTime;
 		socket.emit('dtv', t);
 	}
+	addPlayer(socket, player, isYou) {
+		socket.emit('2', player.getData(), isYou);
+	}
 	removeIndex(i) {
 		this.players.splice(i, 1);
 	}

@@ -8,7 +8,7 @@ class Player {
 		return res;
 	}
 	getData() {
-		return [
+		this.dataCache = [
 			this.id,
 			this.sid,
 			this.name,
@@ -19,6 +19,7 @@ class Player {
 			this.maxHealth,
 			this.scale
 		];
+		return this.dataCache;
 	}
 	constructor(socket) {
 		this.socket = socket;
@@ -36,6 +37,7 @@ class Player {
 		this.dirX = null;
 		this.dirY = null;
 		this.score = 0; // Score is the same as gold
+		this.dataCache = null;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";
