@@ -22,13 +22,11 @@ class GameServer {
 		me.io.on('connection', socket => {
 			log.all('New connection accepted.');
 			this.manager.add(socket);
+			me.msgHandler.conn.call(me, socket);
 			
 			socket.on('1', data => {
 				// Player spawn packet, the data is an object with one property
 				return me.msgHandler.spawn.call(me, socket, data);
-			});
-			socket.on('connect', () => {
-				return me.msgHandler.connPacket.call(me, socket);
 			});
 		});
 	}
@@ -45,6 +43,7 @@ class GameServer {
 				log.lvl = config.logLevel;
 			}
 			this.io = null; // The socket.io server
+			this.gameTime = 1; // Daytime in game
 			this.msgHandler = new MessageHandler(this);
 			this.manager = new Manager(this);
 		}

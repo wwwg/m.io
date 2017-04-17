@@ -8,15 +8,20 @@ class MessageHandler {
 		}
 		return socket.player.connected;
 	}
-	connPacket(socket) {
-		log.all('Socket sent connect packet.');
+	conn(socket) {
 		if (socket.player.connected) {
 			// For some reason the client sent a connection packet while already connected
-			this.manager.close(socket, 'Invalid connection packet sent');
+			this.manager.close(socket, 'Invalid connection');
 		} else {
 			// The client is now connected
 			socket.player.connected = true;
+			// Update the player's time
+			this.manager.updateTime(socket);
 		}
+	}
+	angle(socket, ang) {
+		// Player angle update
+		socket.player.angle = ang;
 	}
 	spawn(socket, data) {
 		if (!this.checkConnection())

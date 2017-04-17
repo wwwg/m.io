@@ -1,4 +1,5 @@
 (() => {
+    window.overrideIP = '127.0.0.1:5000'; // Set to null to connect to regular game servers
     let log = console.debug; // Can change to console.log if needed
     console.clear();
     if (localStorage['load_local_script']) {
@@ -9,6 +10,9 @@
         window.ioconn = window.io.connect;
         
         window.io.connect = function() { // The moomoo.io game client uses io.connect to establish a socket.io connection
+            if (window.overrideIP) {
+                arguments[0] = window.overrideIP;
+            }
             if (!arguments[1] || !arguments[1]["query"]) {
                 // The client always makes a connection with a query string, and this connection doesn't supply one.
                 return ioconn.apply(this, arguments);
@@ -80,6 +84,9 @@
                 s.on('ch', (sid, msg) => {
                     // Chat message
                     log('Player with sid', sid, 'send message:', msg);
+                });
+                s.on('1', mySid => {
+                    console.log('I recieved my SID:', mySid);
                 });
                 // TODO: capture more incoming traffic
 
