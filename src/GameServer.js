@@ -23,7 +23,7 @@ class GameServer {
 			log.all('New connection accepted.');
 			this.manager.add(socket);
 			me.msgHandler.conn.call(me, socket);
-			
+
 			socket.on('1', data => {
 				// Player spawn packet, the data is an object with one property
 				return me.msgHandler.spawn.call(me, socket, data);
@@ -41,6 +41,9 @@ class GameServer {
 			this.config = config;
 			if (config.logLevel) { // Update log level
 				log.lvl = config.logLevel;
+			}
+			if (!config.unknownName) {
+				config.unknownName = "unknown";
 			}
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game

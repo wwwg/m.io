@@ -26,8 +26,15 @@ class MessageHandler {
 	spawn(socket, data) {
 		if (!this.msgHandler.checkConnection(socket))
 			return;
-		console.log('Player spawn packet send with data', data);
-		// TODO: Handle player spawn
+		if (socket.player.spawned) {
+			this.manager.close(socket, 'You are already spawned.');
+		} else {
+			// Player can spawn 
+			var name = data.name.trim();
+			if (name === "") 
+				name = this.config.unknownName;
+			socket.player.name = name;
+		}
 	}
 	constructor(gameServer) {
 		this.gameServer = gameServer;
