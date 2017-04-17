@@ -41,6 +41,8 @@
                     log('Player with sid', sid, 'send message:', msg);
                 });
                 // TODO: capture more incoming traffic
+
+                return s;
             }
         }
     }
