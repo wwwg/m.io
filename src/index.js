@@ -1,0 +1,1 @@
+var GameServer = require('../src/GameServer');
