@@ -1,5 +1,6 @@
 var uws = require('uws');
 var io = require('socket.io');
+var MessageHandler = require('./MessageHandler');
 
 class GameServer {
 	start() {
@@ -22,6 +23,7 @@ class GameServer {
 		} else {
 			this.config = config;
 			this.io = null; // The socket.io server
+			this.msgHandler = new MessageHandler(this);
 		}
 	}
 }
