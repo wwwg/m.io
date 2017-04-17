@@ -12,6 +12,9 @@
 		"moomoo",
 		"moomoo.io private server"
 	],
+	"scripts": {
+		"test": "node tests/test.js"
+	},
 	"dependencies": {
 		"socket.io": "*",
 		"uws": "*"
