@@ -52,6 +52,7 @@ class Player {
 		this.skinCode = 0; // 0 == No skin / hat
 		this.dataCache = null;
 		this.team = null;
+		this.clan = null;
 		this.stone = 0;
 		this.wood = 0;
 		this.food = 0;

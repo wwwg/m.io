@@ -60,7 +60,10 @@ class MessageHandler {
 			// It's safe to add the clan
 			this.clans.add(clanName);
 			var newClanData = this.clans.newestClan.serialize();
+			// Broadcast the creation of a new clan
 			this.io.emit(PACKET.CLAN_ADD, newClanData);
+			// Set the player's clan to the new clan
+			socket.emit(PACKET.PLAYER_SET_CLAN, newClanData.sid, 1);
 			log.all("Clan '" + clanName + "' has been created by " + socket.player.name);
 		}
 	}

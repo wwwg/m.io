@@ -11,6 +11,7 @@ class Clan {
     }
     addPlayer(player) {
         player.player.team = this.name;
+        player.player.clan = this;
         this.members.push(player);
     }
     serialize() {
