@@ -137,6 +137,14 @@ class GameServer {
 					// Get raw player data and send to the user
 					var sdata = Utils.serializePlayerArray(near);
 					me.manager.sendRawUpdate(p, sdata);
+
+					// Update game objects
+					var objsNear = me.objs.getObsNear(p, me.config.updateRadius);
+					var oData = [];
+					for (var j = 0; j < objsNear.length; ++j) {
+						oData = oData.concat(objsNear[j].serialize());
+					}
+					me.manager.sendObj(oData);
 				} else {
 					// Handle dead / idle players
 				}
