@@ -41,6 +41,8 @@ class GameObject {
 		this.type = null;
 		this.data = null;
 		this.ownerSID = -1;
+		this.width = 10;
+		this.height = 10;
 	}
 }
 module.exports = GameObject;
