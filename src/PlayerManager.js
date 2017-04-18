@@ -1,4 +1,4 @@
-var Player = require('./Player');
+var Player = require('./entities/Player');
 var log = require('./utils/Logger');
 const PACKET = require('./utils/packetCodes');
 

@@ -4,7 +4,7 @@ var io = require('socket.io');
 
 // Local imports
 var MessageHandler = require('./MessageHandler');
-var Player = require('./Player');
+var Player = require('./entities/Player');
 var log = require('./utils/Logger');
 var Manager = require('./PlayerManager');
 var Leaderboard = require('./Leaderboard');
