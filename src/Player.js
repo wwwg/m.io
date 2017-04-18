@@ -54,6 +54,9 @@ class Player {
 		this.skinCode = 0; // 0 == No skin / hat
 		this.dataCache = null;
 		this.team = null;
+		this.stone = 0;
+		this.wood = 0;
+		this.food = 0;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";
