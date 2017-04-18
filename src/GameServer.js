@@ -212,7 +212,7 @@ class GameServer {
 			this.clans = new ClanManager(me);
 			this.minimap = new Minimap(me);
 			this.objs = new GameObjManager(me);
-			this.objs.generateObjects();
+			this.objs.generateObjects(100);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
