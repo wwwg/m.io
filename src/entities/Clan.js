@@ -13,6 +13,13 @@ class Clan {
         player.player.team = this.name;
         this.members.push(player);
     }
+    serialize() {
+        var me = this;
+        // Turn the Clan object into a structure the client can use
+        return {
+            sid: me.name
+        }
+    }
     constructor(name) {
         if (name) {
             this.name = name;
