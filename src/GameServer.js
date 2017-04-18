@@ -120,7 +120,7 @@ class GameServer {
 				config.unknownName = "unknown";
 			}
 			if (!config.tickInterval) {
-				config.tickInterval = 100;
+				config.tickInterval = 170;
 			}
 			if (!config.mapSize) {
 				config.mapSize = 12e3; // Default map size, the client currently only supports a map size of 12,000
@@ -134,7 +134,7 @@ class GameServer {
 			}
 			if (!config.playerSpeed) {
 				// Amount of units to move each game tick
-				config.playerSpeed = 50;
+				config.playerSpeed = 60;
 			}
 			if (!config.snowSpeed) {
 				// Speed of the player while in the snow biome
