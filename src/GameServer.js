@@ -105,6 +105,24 @@ class GameServer {
 			me.currentTick++;
 		}
 	}
+	mmUpdate() {
+		var me = this;
+			if (me.alive) {
+				for (var i = 0; i < me.manager.players.length; ++i) {
+					var p = me.manager.players[i];
+					if (p.player.alive) {
+						p.player.socket.emit("mm", 0);
+						/*when clans are added
+						var mapCords = [];
+						for (var m = 0; m < clanMembers.length; m++) {
+							var member = clanMembers[m];
+							mapCords.push(member.x);
+							mapCords.push(member.y);
+						}*/
+					}
+				}
+			}
+	}
 	constructor(config) {
 		if (!config) {
 			throw new Error('Gameserver must be constructed with a configuration object.');
@@ -141,6 +159,10 @@ class GameServer {
 				// Speed of the player while in the snow biome
 				config.snowSpeed = config.playerSpeed / 1.5;
 			}
+			if (!config.mapInt) {
+				//minimap refresh rate in MS
+				config.mapInt = 1000;
+			}
 			this.config = config;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game
@@ -154,6 +176,9 @@ class GameServer {
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
+			me.minimapUpdate = setInterval(()=> {
+				me.mmUpdate.call(me);
+			}, me.config.mapInt);
 		}
 		global.gameServer = me;
 	}
