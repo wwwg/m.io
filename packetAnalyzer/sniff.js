@@ -1,6 +1,6 @@
 (() => {
     window.overrideIP = '127.0.0.1:5000';
-    window.useOverrideIP = true;
+    window.useOverrideIP = false;
 
     let log = console.debug; // Can change to console.log if needed
     console.clear();
@@ -64,13 +64,13 @@
                                     move = "Right";
                                     break;
                             }
-                            log('Move direction:', move, "isMoving:", !!arguments[2]);
+                            // log('Move direction:', move, "isMoving:", !!arguments[2]);
                             break;
                         case "7":
                             log('Auto attack toggled');
                             break;
                         case "4":
-                            log('Attacking:', !!mainData);
+                            // log('Attacking:', !!mainData);
                             break;
                         case "rk":
                             log('Key reset');
@@ -91,7 +91,7 @@
                     console.log('I recieved my SID:', mySid);
                 });
                 s.on('2', (data, isYou) => {
-                    console.log('Add player', data, 'isYou', isYou);
+                    // console.log('Add player', data, 'isYou', isYou);
                 });
                 s.on("connect_error", err => {
                     console.error(err);
@@ -102,13 +102,19 @@
                     // log("Raw player update info:", data);
                 });
                 s.on('4', id => {
-                    log('player with id', id, 'is removed');
+                    // log('player with id', id, 'is removed');
                 })
                 s.on('sa', data => {
                     log("Raw clan player data:", data);
                 });
                 s.on("mm", data => {
-                    log("raw minimap data", data);
+                    // log("raw minimap data", data);
+                });
+                s.on('6', data => {
+                    log('load game object', data);
+                });
+                s.on('12', data => {
+                    log('delete game object', data);
                 });
                 // TODO: capture more incoming traffic
 
