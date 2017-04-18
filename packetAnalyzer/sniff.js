@@ -1,6 +1,6 @@
 (() => {
     window.overrideIP = '127.0.0.1:5000';
-    window.useOverrideIP = true;
+    window.useOverrideIP = false;
 
     let log = console.debug; // Can change to console.log if needed
     console.clear();
