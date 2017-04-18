@@ -1,6 +1,6 @@
 (() => {
     window.overrideIP = '127.0.0.1:5000';
-    window.useOverrideIP = true;
+    window.useOverrideIP = false;
 
     let log = console.debug; // Can change to console.log if needed
     console.clear();
@@ -100,6 +100,9 @@
                 s.on('3', data => {
                     // Player update
                     log("Raw player update info:", data);
+                });
+                s.on('sa', data => {
+                    log("Raw clan player data:", data);
                 });
                 // TODO: capture more incoming traffic
 
