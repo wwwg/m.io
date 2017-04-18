@@ -30,6 +30,24 @@ class MessageHandler {
 		if (socket.player.connected)
 			socket.player.angle = ang;
 	}
+	move(socket, key, down) {
+		if (socket.player.connected && key && typeof down === "number") {
+			// The player has sent a valid move packet
+			var boolDown = !!down;
+			switch (key) {
+				case "u":
+				case "d":
+					socket.player.dirY = key;
+					socket.player.downY = boolDown;
+					break;
+				case "l":
+				case "r":
+					socket.player.dirX = key;
+					socket.player.downX = boolDown;
+					break;
+			}
+		}
+	}
 	spawn(socket, data) {
 		if (!this.msgHandler.checkConnection(socket))
 			return;

@@ -46,8 +46,6 @@ class Player {
 		this.scale = 35; // default
 		this.health = 100;
 		this.maxHealth = 100; // default
-		this.dirX = null;
-		this.dirY = null;
 		this.score = 0; // Score is the same as gold
 		this.weaponCode = 0; // 0 == Default hammer
 		this.buildCode = -1; // -1 == No build item
@@ -57,6 +55,12 @@ class Player {
 		this.stone = 0;
 		this.wood = 0;
 		this.food = 0;
+
+		// Movement based properties
+		this.dirX = null;
+		this.dirY = null;
+		this.downX = false;
+		this.downY = false;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";

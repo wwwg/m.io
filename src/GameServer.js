@@ -26,13 +26,17 @@ class GameServer {
 			log.all('New connection accepted.');
 			this.manager.add(socket);
 			me.msgHandler.conn.call(me, socket);
-
+			
+			// Attach packet handlers
 			socket.on(PACKET.PLAYER_START, data => {
 				// Player spawn packet, the data is an object with one property
 				return me.msgHandler.spawn.call(me, socket, data);
 			});
 			socket.on(PACKET.PLAYER_ANGLE, data => {
 				return me.msgHandler.angle.call(me, socket, data);
+			});
+			socket.on(PACKET.PLAYER_MOVE, (key, down) => {
+				return me.msgHandler.move.call(me, socket, key, down);
 			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
@@ -85,6 +89,10 @@ class GameServer {
 			if (!config.updateRadius) {
 				// Players will be send information about players within 500 units of them
 				config.updateRadius = 500;
+			}
+			if (!config.playerSpeed) {
+				// Amount of units to move each game tick
+				config.playerSpeed = 10;
 			}
 			this.config = config;
 			this.io = null; // The socket.io server
