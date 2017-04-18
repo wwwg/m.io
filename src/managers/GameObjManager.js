@@ -3,6 +3,25 @@ var GameObj = require('../entities/GameObject');
 var Utils = require('../utils/Utils');
 
 class GameManager {
+	getObjsNear(socket, radius) {
+		var px = socket.player.x;
+		var py = socket.player.y;
+		var x1 = px - radius;
+		var x2 = px + radius;
+		var y1 = py - radius;
+		var y2 = py + radius;
+		var near = [];
+		for (var i = 0; i < this.objs.length; ++i) {
+			var x = this.objs[i].x;
+			var y = this.objs[i].y;
+			if ((x1 <= x && x <= x2) &&
+				(y1 <= y && y <= y2)) {
+				near.push(this.objs[i]);
+			}
+		}
+		socket.player.objsNear = near;
+		return near;
+	}
 	getRandCoord() {
 		var me = this;
 		return Utils.rand(me.gameServer.config.mapSize);

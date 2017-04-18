@@ -58,6 +58,7 @@ class Player {
 		this.wood = 0;
 		this.food = 0;
 		this.playersNear = [];
+		this.objsNear = [];
 		this.joiningClan = false;
 		this.autoAtk = false;
 
