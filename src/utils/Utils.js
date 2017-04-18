@@ -17,7 +17,7 @@ class Utils {
                     (x >= 10 && y >= 10));
     }
     static isInSnow(player) {
-        return (player.player.y <= gameServer.config.snowStart);
+        return (player.player.y <= gameServer.config.snowStart - 5);
     }
 }
 
