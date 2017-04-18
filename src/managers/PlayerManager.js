@@ -48,6 +48,7 @@ class PlayerManager {
 					if (!player.player.playersNear.includes(players[i]) && players[i] != player) {
 						// Emit player add to the socket
 						this.addPlayer(player, players[i]);
+						player.player.playersNear.push(players[i]);
 					}
 			}
 		}
