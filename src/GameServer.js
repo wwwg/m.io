@@ -113,7 +113,7 @@ class GameServer {
 				config.unknownName = "unknown";
 			}
 			if (!config.tickInterval) {
-				config.tickInterval = 350;
+				config.tickInterval = 100;
 			}
 			if (!config.mapSize) {
 				config.mapSize = 12e3; // Default map size, the client currently only supports a map size of 12,000
