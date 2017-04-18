@@ -129,6 +129,10 @@ class GameServer {
 				// Amount of units to move each game tick
 				config.playerSpeed = 50;
 			}
+			if (!config.snowSpeed) {
+				// Speed of the player while in the snow biome
+				config.snowSpeed = config.playerSpeed / 2;
+			}
 			this.config = config;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game
