@@ -4,6 +4,7 @@ var Utils = require('../utils/Utils');
 
 class GameManager {
 	getObjsNear(socket, radius) {
+		var me = this;
 		var px = socket.player.x;
 		var py = socket.player.y;
 		var x1 = px - radius;
@@ -17,6 +18,10 @@ class GameManager {
 			if ((x1 <= x && x <= x2) &&
 				(y1 <= y && y <= y2)) {
 				near.push(this.objs[i]);
+				if (!socket.player.objsNear.includes(this.objs[i])) {
+					var data = this.objs[i].serialize();
+					me.gameServer.manager.sendObj(data);
+				}
 			}
 		}
 		socket.player.objsNear = near;
