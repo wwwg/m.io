@@ -55,6 +55,12 @@ class PlayerManager {
 		player.player.playersNear = near;
 		return near;
 	}
+	getBySID(sid) {
+		for (var i = 0; i < this.players.length; ++i) {
+			if (this.players[i].player.sid === sid) return this.players[i];
+		}
+		return null;
+	}
 	close(socket, reason) {
 		for (var i = 0; i < this.players.length; ++i) {
 			if (socket.player.sid == this.players[i].sid) {

@@ -64,6 +64,42 @@ class MessageHandler {
 		this.io.emit(PACKET.CLAN_DEL, clan.name);
 		this.clans.remove(clan.name);
 	}
+	notificationResponse(socket, sid, join) {
+		var p = this.manager.getBySID(sid);
+		if (!p) {
+			log.all("Not adding non existent clan member");
+		} else if (p.player.joiningClan) {
+			p.player.joiningClan = false;
+			if (join) {
+				// Player can join the clan
+				log.all(p.player.name + " has joined clan " + socket.player.clan.name);
+				socket.player.clan.addPlayer(p);
+				p.emit(PACKET.PLAYER_SET_CLAN, socket.player.team, 0);
+				for (var i = 0; i < socket.player.clan.members.length; ++i) {
+					this.msgHandler.syncClanPlayers(socket.player.clan.members[i]);
+				}
+			}
+		}
+	}
+	clanKick(socket, sid) {
+		var p = this.manager.getBySID(sid);
+		if (p && socket.player.clan) {
+			socket.player.clan.removePlayer(p);
+			for (var i = 0; i < socket.player.clan.members.length; ++i) {
+				this.msgHandler.syncClanPlayers(socket.player.clan.members[i]);
+			}
+		}
+	}
+	clanJoin(socket, sid) {
+		var clan = this.clans.getByName(sid);
+		if (clan) {
+			// Send an join notification to the owner
+			var sid = socket.player.sid;
+			var name = socket.player.name;
+			socket.player.joiningClan = true;
+			clan.owner.emit(PACKET.CLAN_NOTIFY, sid, name);
+		}
+	}
 	clanLeave(socket) {
 		if (socket.player.team) {
 			// It's safe to remove the player's clan

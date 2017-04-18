@@ -13,6 +13,8 @@ module.exports = {
     CLAN_CREATE: "8",
     PLAYER_LEAVE_CLAN: "9",
     CLAN_REQ_JOIN: "10",
+    CLAN_ACC_JOIN: "11",
+    CLAN_KICK: "12",
     CHAT: "ch",
     CLAN_DEL: "ad",
     PLAYER_SET_CLAN: "st",

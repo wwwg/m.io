@@ -48,6 +48,15 @@ class GameServer {
 			socket.on(PACKET.PLAYER_LEAVE_CLAN, () => {
 				return me.msgHandler.clanLeave.call(me, socket);
 			})
+			socket.on(PACKET.CLAN_REQ_JOIN, sid => {
+				return me.msgHandler.clanJoin.call(me, socket, sid);
+			});
+			socket.on(PACKET.CLAN_ACC_JOIN, (sid, join) => {
+				return me.msgHandler.notificationResponse.call(me, socket, sid, join);
+			});
+			socket.on(PACKET.CLAN_KICK, sid => {
+				return me.msgHandler.clanKick.call(me, socket, sid);
+			})
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});

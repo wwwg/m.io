@@ -20,6 +20,13 @@ class ClanManager {
         }
         return false;
     }
+    getByName(name) {
+        for (var i = 0; i < this.clans.length; ++i) {
+            if (this.clans[i].name === name)
+                return this.clans[i];
+        }
+        return null;
+    }
     get newestClan() {
         return this.clans[this.clans.length - 1];
     }

@@ -58,6 +58,7 @@ class Player {
 		this.wood = 0;
 		this.food = 0;
 		this.playersNear = [];
+		this.joiningClan = false;
 
 		// Movement based properties
 		this.dirX = null;
