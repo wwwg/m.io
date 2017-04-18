@@ -9,6 +9,7 @@ var log = require('./utils/Logger');
 var Manager = require('./managers/PlayerManager');
 var Leaderboard = require('./Leaderboard');
 var Utils = require('./utils/Utils');
+var ClanManager = require('./managers/ClanManager');
 const PACKET = require('./utils/packetCodes');
 
 class GameServer {
@@ -148,6 +149,7 @@ class GameServer {
 			this.msgHandler = new MessageHandler(this);
 			this.manager = new Manager(this);
 			this.leaderboard = new Leaderboard(this);
+			this.clans = new ClanManager(this);
 			var me = this;
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
