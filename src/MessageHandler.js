@@ -50,9 +50,8 @@ class MessageHandler {
 	}
 	chat(socket, msg) {
 		// Player chat recieved
-		var recipients = this.manager.getNearPlayers(socket);
-		for (var i = 0; i < recipients.length; ++i) {
-			this.manager.sendChat(socket, recipients[i], msg);
+		for (var i = 0; i < socket.player.playersNear.length; ++i) {
+			this.manager.sendChat(socket, socket.player.playersNear[i], msg);
 		}
 	}
 	spawn(socket, data) {

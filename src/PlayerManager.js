@@ -46,6 +46,7 @@ class PlayerManager {
 					near.push(players[i]);
 			}
 		}
+		player.player.playersNear = near;
 		return near;
 	}
 	close(socket, reason) {

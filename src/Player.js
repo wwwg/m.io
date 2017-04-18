@@ -55,6 +55,7 @@ class Player {
 		this.stone = 0;
 		this.wood = 0;
 		this.food = 0;
+		this.playersNear = [];
 
 		// Movement based properties
 		this.dirX = null;
