@@ -13,7 +13,7 @@ class ClanManager {
     }
     remove(clanName) {
         for (var i = 0; i < this.clans.length; ++i) {
-            if (this.clans[i].name === clanName) {
+            if (this.clans[i].name == clanName) {
                 this.clans.splice(i, 1);
                 return true;
             }

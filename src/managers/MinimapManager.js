@@ -9,8 +9,8 @@ class MinimapManager {
                 var mems = players[i].player.clan.members;
                 var data = [];
                 for (var j = 0; j < mems.length; ++j) {
-                    data.push(mems[j].player.sid);
-                    data.push(mems[j].player.name);
+                    data.push(mems[j].player.x);
+                    data.push(mems[j].player.y);
                 }
                 players[i].emit(PACKET.MINIMAP, data);
             }
