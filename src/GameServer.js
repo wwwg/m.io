@@ -38,6 +38,9 @@ class GameServer {
 			socket.on(PACKET.PLAYER_MOVE, (key, down) => {
 				return me.msgHandler.move.call(me, socket, key, down);
 			});
+			socket.on(PACKET.CHAT, msg => {
+				return me.msgHandler.chat.call(me, socket, msg);
+			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});

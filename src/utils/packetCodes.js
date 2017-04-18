@@ -9,5 +9,6 @@ module.exports = {
     LEADERS_UPDATE: "5",
     LOAD_GAME_OBJ: "6",
     GATHER: "7",
-    WIGGLE: "8"
+    WIGGLE: "8",
+    CHAT: "ch"
 }

@@ -48,6 +48,13 @@ class MessageHandler {
 			}
 		}
 	}
+	chat(socket, msg) {
+		// Player chat recieved
+		var recipients = this.manager.getNearPlayers(socket);
+		for (var i = 0; i < recipients.length; ++i) {
+			this.manager.sendChat(socket, recipients[i], msg);
+		}
+	}
 	spawn(socket, data) {
 		if (!this.msgHandler.checkConnection(socket))
 			return;
