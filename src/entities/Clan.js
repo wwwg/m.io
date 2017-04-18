@@ -21,6 +21,15 @@ class Clan {
             "sid": me.name
         }
     }
+    serializeMembers() {
+        var ser = [];
+        for (var i = 0; i < this.members.length; ++i) {
+            ser = ser.concat([this.members[i].player.sid,
+                this.members[i].player.name]);
+        }
+        this.serializedMemberCache = ser;
+        return this.serializedMemberCache;
+    }
     constructor(name) {
         if (name) {
             this.name = name;
@@ -28,6 +37,7 @@ class Clan {
             this.name = null;
         }
         this.members = [];
+        this.serializedMemberCache = [];
     }
 }
 module.exports = Clan;

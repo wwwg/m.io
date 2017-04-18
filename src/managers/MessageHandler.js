@@ -54,16 +54,23 @@ class MessageHandler {
 			this.manager.sendChat(socket, socket.player.playersNear[i], msg);
 		}
 	}
+	syncClanPlayers(socket) {
+		var data = socket.player.clan.serializeMembers();
+		console.log(data);
+		socket.emit(PACKET.SET_CLAN_PLAYERS, data);
+	}
 	clanCreate(socket, clanName) {
 		// TODO: handle clan creation attempts
 		if (!this.clans.clanExists(clanName)) {
 			// It's safe to add the clan
 			this.clans.add(clanName);
 			var newClanData = this.clans.newestClan.serialize();
+			this.clans.newestClan.addPlayer(socket);
 			// Broadcast the creation of a new clan
 			this.io.emit(PACKET.CLAN_ADD, newClanData);
 			// Set the player's clan to the new clan
 			socket.emit(PACKET.PLAYER_SET_CLAN, newClanData.sid, 1);
+			this.msgHandler.syncClanPlayers(socket);
 			log.all("Clan '" + clanName + "' has been created by " + socket.player.name);
 		}
 	}
