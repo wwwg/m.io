@@ -107,6 +107,9 @@
                 s.on('sa', data => {
                     log("Raw clan player data:", data);
                 });
+                s.on("mm", data => {
+                    log("raw minimap data", data);
+                });
                 // TODO: capture more incoming traffic
 
                 return s;
