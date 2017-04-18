@@ -28,6 +28,7 @@ class Player {
 			this.angle,
 			this.buildCode,
 			this.weaponCode,
+			this.team,
 			this.skinCode
 		]
 		return this.dataCache;

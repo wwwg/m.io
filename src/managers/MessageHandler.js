@@ -56,7 +56,6 @@ class MessageHandler {
 	}
 	syncClanPlayers(socket) {
 		var data = socket.player.clan.serializeMembers();
-		console.log(data);
 		socket.emit(PACKET.SET_CLAN_PLAYERS, data);
 	}
 	clanCreate(socket, clanName) {
