@@ -1,4 +1,5 @@
 var Tree = require('../entities/Tree');
+var Stone = require('../entities/Stone');
 var GameObj = require('../entities/GameObject');
 var Utils = require('../utils/Utils');
 
@@ -34,7 +35,7 @@ class GameManager {
 		this.objLen = amount;
 		for (var i = 0; i < amount; ++i) {
 			// For now just generate trees
-			this.objs.push(new Tree(i));
+			this.objs.push(new Stone(i));
 			this.objs[i].x = this.getRandCoord();
 			this.objs[i].y = this.getRandCoord();
 		}
