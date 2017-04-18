@@ -135,7 +135,7 @@ class GameServer {
 			}
 			if (!config.snowSpeed) {
 				// Speed of the player while in the snow biome
-				config.snowSpeed = config.playerSpeed / 2;
+				config.snowSpeed = config.playerSpeed / 1.5;
 			}
 			this.config = config;
 			this.io = null; // The socket.io server
