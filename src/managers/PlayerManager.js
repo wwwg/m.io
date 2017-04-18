@@ -25,6 +25,9 @@ class PlayerManager {
 	sendChat(source, recipient, msg) {
 		source.emit(PACKET.CHAT, recipient.player.sid, msg);
 	}
+	sendObj(socket, data) {
+		socket.emit(PACKET.LOAD_GAME_OBJ, data);
+	}
 	getNearPlayers(player) {
 		// Get all the players close to "player"
 		var x = player.player.x;
