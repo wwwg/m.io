@@ -152,6 +152,9 @@ class MessageHandler {
 				me.manager.sendRawUpdate(socket, []);
 				log.all("Spawned player with name", socket.player.name);
 				socket.player.alive = true;
+				for (var i = 0; i < me.clans.clans.length; ++i) {
+					this.io.emit(PACKET.CLAN_ADD, me.clans.clans[i].serialize());
+				}
 			}, 10);
 		}
 	}
