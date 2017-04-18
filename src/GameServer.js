@@ -11,6 +11,7 @@ var Leaderboard = require('./entities/Leaderboard');
 var Utils = require('./utils/Utils');
 var ClanManager = require('./managers/ClanManager');
 var Minimap = require("./managers/MinimapManager");
+var GameObjManager = require('./managers/GameObjManager');
 const PACKET = require('./utils/packetCodes');
 
 class GameServer {
@@ -202,6 +203,7 @@ class GameServer {
 			this.leaderboard = new Leaderboard(me);
 			this.clans = new ClanManager(me);
 			this.minimap = new Minimap(me);
+			this.objs = new GameObjManager(me);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);

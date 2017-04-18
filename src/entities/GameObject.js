@@ -42,3 +42,4 @@ class GameObject {
 		this.ownerSID = -1;
 	}
 }
+module.exports = GameObject;
