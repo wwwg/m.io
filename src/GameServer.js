@@ -10,6 +10,7 @@ var Manager = require('./managers/PlayerManager');
 var Leaderboard = require('./entities/Leaderboard');
 var Utils = require('./utils/Utils');
 var ClanManager = require('./managers/ClanManager');
+var Minimap = require("./managers/MinimapManager");
 const PACKET = require('./utils/packetCodes');
 
 class GameServer {
@@ -176,6 +177,10 @@ class GameServer {
 				// Speed of the player while in the snow biome
 				config.snowSpeed = config.playerSpeed / 1.5;
 			}
+			if (!config.minimapSpeed) {
+				// Minimap update speed
+				config.minimapSpeed = 2000;
+			}
 			var me = this;
 			this.config = config;
 			this.io = null; // The socket.io server
@@ -186,6 +191,7 @@ class GameServer {
 			this.manager = new Manager(me);
 			this.leaderboard = new Leaderboard(me);
 			this.clans = new ClanManager(me);
+			this.minimap = new Minimap(me);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
