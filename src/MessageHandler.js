@@ -27,7 +27,8 @@ class MessageHandler {
 	}
 	angle(socket, ang) {
 		// Player angle update
-		socket.player.angle = ang;
+		if (socket.player.connected)
+			socket.player.angle = ang;
 	}
 	spawn(socket, data) {
 		if (!this.msgHandler.checkConnection(socket))

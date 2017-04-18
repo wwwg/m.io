@@ -31,6 +31,9 @@ class GameServer {
 				// Player spawn packet, the data is an object with one property
 				return me.msgHandler.spawn.call(me, socket, data);
 			});
+			socket.on(PACKET.PLAYER_ANGLE, data => {
+				return me.msgHandler.angle.call(me, socket, data);
+			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});

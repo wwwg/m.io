@@ -2,6 +2,7 @@ module.exports = {
     // Packet constants
     PLAYER_START: "1",
     PLAYER_ADD: "2",
+    PLAYER_ANGLE: "2",
     PLAYER_UPDATE: "3",
     PLAYER_REMOVE: "4",
     LEADERS_UPDATE: "5",
