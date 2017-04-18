@@ -6,6 +6,8 @@ const PACKET = require('../utils/packetCodes');
 class MessageHandler {
 	checkConnection(socket) {
 		var me = this;
+		if (!socket || !socket.player)
+				return false;
 		if (!socket.player.connected) {
 			me.manager.close(socket, 'Connection handshake not completed.');
 		}
@@ -138,7 +140,8 @@ class MessageHandler {
 		}
 	}
 	spawn(socket, data) {
-		if (!this.msgHandler.checkConnection.call(this, socket));
+		var me = this;
+		if (!this.msgHandler.checkConnection.call(me, socket))
 			return;
 		if (socket.player.spawned) {
 			this.manager.close(socket, 'You are already spawned.');
