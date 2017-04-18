@@ -4,15 +4,16 @@ class GameObject {
 		this.y = y;
 	}
 	serialize() {
+		var me = this;
 		return [
-			this.sid,
-			this.x,
-			this.y,
-			this.dir,
-			this.scale,
-			this.type.
-			this.data,
-			this.ownerSID
+			me.sid,
+			me.x,
+			me.y,
+			me.dir,
+			me.scale,
+			me.type,
+			me.data,
+			me.ownerSID
 		];
 	}
 	constructor(sid) {

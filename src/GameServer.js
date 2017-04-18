@@ -144,7 +144,7 @@ class GameServer {
 					for (var j = 0; j < objsNear.length; ++j) {
 						oData = oData.concat(objsNear[j].serialize());
 					}
-					me.manager.sendObj(oData);
+					me.manager.sendObj(p, oData);
 				} else {
 					// Handle dead / idle players
 				}
@@ -187,7 +187,7 @@ class GameServer {
 			}
 			if (!config.snowSpeed) {
 				// Speed of the player while in the snow biome
-				config.snowSpeed = config.playerSpeed / 1.5;
+				config.snowSpeed = config.playerSpeed / 1.25;
 			}
 			if (!config.statUpdateSpeed) {
 				// Minimap and leaderboard update speed
