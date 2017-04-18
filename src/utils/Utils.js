@@ -16,6 +16,9 @@ class Utils {
         return ((x <= (bounds - 10) && y <= (bounds - 10)) &&
                     (x >= 10 && y >= 10));
     }
+    static isInSnow(player) {
+        return (player.player.y <= gameServer.config.snowStart);
+    }
 }
 
 module.exports = Utils;
