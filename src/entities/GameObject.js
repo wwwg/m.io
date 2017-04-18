@@ -28,6 +28,9 @@ class GameObject {
         items.list[data[i + 6]], /data
         true,
         (data[i + 7]>=0?{sid:data[i + 7]}:null));
+		
+		0 wood // 1 food // 2 stone
+		2 wood wall //3 stone wall //4 spikes // 5g spikes //6 windmill //7 faster windmill //8 mine //9 pit trap //10 boostpad
 		*/
 		this.sid = sid;
 		this.dir = 0;
