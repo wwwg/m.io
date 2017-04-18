@@ -139,7 +139,7 @@ class GameServer {
 					me.manager.sendRawUpdate(p, sdata);
 
 					// Update game objects
-					var objsNear = me.objs.getObsNear(p, me.config.updateRadius);
+					var objsNear = me.objs.getObjsNear(p, me.config.updateRadius);
 					var oData = [];
 					for (var j = 0; j < objsNear.length; ++j) {
 						oData = oData.concat(objsNear[j].serialize());
