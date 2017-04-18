@@ -57,7 +57,10 @@ class GameServer {
 			});
 			socket.on(PACKET.CLAN_KICK, sid => {
 				return me.msgHandler.clanKick.call(me, socket, sid);
-			})
+			});
+			socket.on(PACKET.AUTO_ATK, () => {
+				return me.msgHandler.autoAttack.call(me, socket);
+			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});

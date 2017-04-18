@@ -59,6 +59,7 @@ class Player {
 		this.food = 0;
 		this.playersNear = [];
 		this.joiningClan = false;
+		this.autoAtk = false;
 
 		// Movement based properties
 		this.dirX = null;

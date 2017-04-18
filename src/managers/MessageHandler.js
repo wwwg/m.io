@@ -61,6 +61,10 @@ class MessageHandler {
 			}
 		}
 	}
+	autoAttack(socket) {
+		log.all("Player " + socket.player.name + " has toggled auto attack");
+		socket.player.autoAtk = !socket.player.autoAtk;
+	}
 	chat(socket, msg) {
 		// Player chat recieved
 		for (var i = 0; i < socket.player.playersNear.length; ++i) {
