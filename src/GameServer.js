@@ -3,10 +3,10 @@ var uws = require('uws');
 var io = require('socket.io');
 
 // Local imports
-var MessageHandler = require('./MessageHandler');
+var MessageHandler = require('./managers/MessageHandler');
 var Player = require('./entities/Player');
 var log = require('./utils/Logger');
-var Manager = require('./PlayerManager');
+var Manager = require('./managers/PlayerManager');
 var Leaderboard = require('./Leaderboard');
 var Utils = require('./utils/Utils');
 const PACKET = require('./utils/packetCodes');

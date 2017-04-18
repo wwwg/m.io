@@ -1,7 +1,7 @@
-var Player = require('./entities/Player');
-var log = require('./utils/Logger');
-const Utils = require('./utils/Utils');
-const PACKET = require('./utils/packetCodes');
+var Player = require('../entities/Player');
+var log = require('../utils/Logger');
+const Utils = require('../utils/Utils');
+const PACKET = require('../utils/packetCodes');
 
 class MessageHandler {
 	checkConnection(socket) {

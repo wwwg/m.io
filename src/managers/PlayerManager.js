@@ -1,6 +1,6 @@
-var Player = require('./entities/Player');
-var log = require('./utils/Logger');
-const PACKET = require('./utils/packetCodes');
+var Player = require('../entities/Player');
+var log = require('../utils/Logger');
+const PACKET = require('../utils/packetCodes');
 
 class PlayerManager {
 	updateTime(socket) {
