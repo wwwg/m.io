@@ -26,7 +26,7 @@ class GameServer {
 			log.all('New connection accepted.');
 			this.manager.add(socket);
 			me.msgHandler.conn.call(me, socket);
-			
+
 			// Attach packet handlers
 			socket.on(PACKET.PLAYER_START, data => {
 				// Player spawn packet, the data is an object with one property
@@ -43,13 +43,48 @@ class GameServer {
 			});
 		});
 	}
-	clockCallback() {
+	tick() {
 		var me = this;
 		if (me.alive) {
 			for (var i = 0; i < me.manager.players.length; ++i) {
 				var p = me.manager.players[i];
 				if (p.player.alive) {
 					// Handle alive players
+
+					// Move player
+					var mx = null;
+					var my = null;
+					if (p.player.downX) {
+						// The player needs to be translated across the X axis
+						if (p.player.dirX == "l") {
+							// Player moves left
+							mx = p.player.x - me.config.playerSpeed;
+						} else if (p.player.dirX == "r") {
+							// Player moves right
+							mx = p.player.x + me.config.playerSpeed;
+						}
+					}
+					if (p.player.downY) {
+						// The player needs to be translated across the Y axis
+						if (p.player.dirY == "u") {
+							// Player moves up
+							my = p.player.y - me.config.playerSpeed;
+						} else if (p.player.dirY == "d") {
+							// Player moves down
+							my = p.player.y + me.config.playerSpeed;
+						}
+					}
+					// Update coords if needed
+					if (mx &&
+					     Utils.coordInBounds(mx, me.config.mapSize)) {
+						p.player.x = mx;
+					}
+					if (my &&
+					     Utils.coordInBounds(my, me.config.mapSize)) {
+						p.player.y = my;
+					}
+
+					// Update the players around the player
 					var near = me.manager.getNearPlayers(p);
 					// Get raw player data and send to the user
 					var sdata = Utils.serializePlayerArray(near);
@@ -92,7 +127,7 @@ class GameServer {
 			}
 			if (!config.playerSpeed) {
 				// Amount of units to move each game tick
-				config.playerSpeed = 10;
+				config.playerSpeed = 50;
 			}
 			this.config = config;
 			this.io = null; // The socket.io server
@@ -104,7 +139,7 @@ class GameServer {
 			this.leaderboard = new Leaderboard(this);
 			var me = this;
 			me.gameClock = setInterval(() => {
-				me.clockCallback.call(me); // Make sure the clock callback is called within the context of the gameServer
+				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
 		}
 	}
