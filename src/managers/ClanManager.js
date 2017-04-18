@@ -20,7 +20,7 @@ class ClanManager {
         }
         return false;
     }
-    connstructor(gameServer) {
+    constructor(gameServer) {
         this.gameServer = gameServer;
         this.clans = [];
     }
