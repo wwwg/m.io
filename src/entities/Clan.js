@@ -17,7 +17,7 @@ class Clan {
         var me = this;
         // Turn the Clan object into a structure the client can use
         return {
-            sid: me.name
+            "sid": me.name
         }
     }
     constructor(name) {
