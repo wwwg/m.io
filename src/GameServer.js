@@ -144,16 +144,16 @@ class GameServer {
 				// Speed of the player while in the snow biome
 				config.snowSpeed = config.playerSpeed / 1.5;
 			}
+			var me = this;
 			this.config = config;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game
 			this.currentTick = 0;
 			this.alive = true;
-			this.msgHandler = new MessageHandler(this);
-			this.manager = new Manager(this);
-			this.leaderboard = new Leaderboard(this);
-			this.clans = new ClanManager(this);
-			var me = this;
+			this.msgHandler = new MessageHandler(me);
+			this.manager = new Manager(me);
+			this.leaderboard = new Leaderboard(me);
+			this.clans = new ClanManager(me);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);

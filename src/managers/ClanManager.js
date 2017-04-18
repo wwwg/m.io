@@ -20,6 +20,9 @@ class ClanManager {
         }
         return false;
     }
+    get newestClan() {
+        return this.clans[this.clans.length - 1];
+    }
     constructor(gameServer) {
         this.gameServer = gameServer;
         this.clans = [];

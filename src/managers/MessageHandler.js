@@ -59,6 +59,8 @@ class MessageHandler {
 		if (!this.clans.clanExists(clanName)) {
 			// It's safe to add the clan
 			this.clans.add(clanName);
+			var newClanData = this.clans.newestClan.serialize();
+			this.io.emit(PACKET.CLAN_ADD, newClanData);
 			log.all("Clan '" + clanName + "' has been created by " + socket.player.name);
 		}
 	}
