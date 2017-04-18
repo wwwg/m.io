@@ -63,11 +63,12 @@ class PlayerManager {
 	}
 	close(socket, reason) {
 		for (var i = 0; i < this.players.length; ++i) {
-			if (socket.player.sid == this.players[i].sid) {
+			if (socket.player.sid == this.players[i].player.sid) {
 				log.info('Closing socket for "' + reason + '"');
+				socket.emit(PACKET.DISCONN, reason);
 				socket.disconnect(reason);
 				this.removeIndex(i);
-				break;
+				return;
 			}
 		}
 	}

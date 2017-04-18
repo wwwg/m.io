@@ -184,6 +184,10 @@ class GameServer {
 			if (!config.leaderboardCount) {
 				config.leaderboardCount = 10;
 			}
+			if (!config.maxPlayers) {
+				// The default servers only allow 50 players
+				config.maxPlayers = 1;
+			}
 			var me = this;
 			this.config = config;
 			this.io = null; // The socket.io server

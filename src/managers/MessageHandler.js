@@ -5,15 +5,24 @@ const PACKET = require('../utils/packetCodes');
 
 class MessageHandler {
 	checkConnection(socket) {
+		var me = this;
 		if (!socket.player.connected) {
-			this.manager.close(socket, 'Connection handshake not completed.');
+			me.manager.close(socket, 'Connection handshake not completed.');
 		}
 		return socket.player.connected;
 	}
 	conn(socket) {
+		var me = this;
 		if (socket.player.connected) {
 			// For some reason the client sent a connection packet while already connected
 			this.manager.close(socket, 'Invalid connection');
+		} else if (this.manager.players.length >
+					this.config.maxPlayers) {
+			// Server is full
+			me.manager.close(socket, `
+					<h1 style="font-size: 150%; color: red">
+						Server is full.
+					</h1>`);
 		} else {
 			// The client is now connected
 			socket.player.connected = true;
@@ -129,7 +138,7 @@ class MessageHandler {
 		}
 	}
 	spawn(socket, data) {
-		if (!this.msgHandler.checkConnection(socket))
+		if (!this.msgHandler.checkConnection.call(this, socket));
 			return;
 		if (socket.player.spawned) {
 			this.manager.close(socket, 'You are already spawned.');

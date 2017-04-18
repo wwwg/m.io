@@ -8,6 +8,7 @@ Here is a list of the features implemented in m.io, please note that the project
 - Internal game clock: ✓
 - Collision engine: ✓
 - Complete clan support: ✓
+- Configurable player limit: ✓
 - Leaderboard: ✓
 - Minimap: ✓
 - Chat: ✓

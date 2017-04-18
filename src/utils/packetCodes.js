@@ -23,5 +23,6 @@ module.exports = {
     SET_CLAN_PLAYERS: "sa",
     CLAN_ADD: "ac",
     CLAN_NOTIFY: "an",
-    MINIMAP: "mm"
+    MINIMAP: "mm",
+    DISCONN: "d"
 }
