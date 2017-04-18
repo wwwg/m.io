@@ -119,7 +119,7 @@ class GameServer {
 				config.mapSize = 12e3; // Default map size, the client currently only supports a map size of 12,000
 			}
 			if (!config.snowStart) {
-				config.snowStart = 2400; // Default snow biom start X
+				config.snowStart = 2400; // Default snow biom start Y
 			}
 			if (!config.updateRadius) {
 				// Players will be send information about players within 500 units of them
