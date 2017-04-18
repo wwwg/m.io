@@ -1,5 +1,22 @@
 # The m.io project
-The goal of the m.io project is to create an open source Moomoo.io server implementation. Currently m.io does not work as a private server as it is still in development. m.io is avalible as an npm package, but the package will not be updated until m.io is able to act as a basic server implementation.
+The goal of the m.io project is to create an open source Moomoo.io server implementation. m.io is only partially finished, and currently contains limited features compared to the actual game.
+
+# What does m.io currently support?
+Here is a list of the features implemented in m.io, please note that the project is currently work in progress.
+- Basic player functionality: ✓
+- Customizability: ✓
+- Internal game clock: ✓
+- Collision engine: ✓
+- Complete clan support: ✓
+- Leaderboard: ✓
+- Minimap: ✓
+- Chat: ✓
+- PvP: ✘
+- Shop: ✘
+- Items: ✘
+- Projectile Physics: ✘
+- Game Objects: ✘
+Other unique features are planned such as multi world servers and game modes.
 
 # Directory roadmap
 `src/` - The server source code<br>
