@@ -54,6 +54,9 @@ class MessageHandler {
 			this.manager.sendChat(socket, socket.player.playersNear[i], msg);
 		}
 	}
+	clanCreate(socket, clanName) {
+		// TODO: handle clan creation attempts
+	}
 	spawn(socket, data) {
 		if (!this.msgHandler.checkConnection(socket))
 			return;

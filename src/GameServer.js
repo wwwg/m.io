@@ -42,6 +42,9 @@ class GameServer {
 			socket.on(PACKET.CHAT, msg => {
 				return me.msgHandler.chat.call(me, socket, msg);
 			});
+			socket.on(PACKET.CLAN_CREATE, clanName => {
+				return me.msgHandler.clanCreate.call(me, socket, clanName);
+			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});
