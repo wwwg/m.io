@@ -4,6 +4,7 @@ module.exports = {
     PLAYER_ADD: "2",
     PLAYER_ANGLE: "2",
     PLAYER_UPDATE: "3",
+    PLAYER_ATTACK :"4",
     PLAYER_MOVE: "3",
     PLAYER_REMOVE: "4",
     LEADERS_UPDATE: "5",
