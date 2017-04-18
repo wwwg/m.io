@@ -8,7 +8,7 @@ class Player {
 		return res;
 	}
 	getData() {
-		this.dataCache = [
+		return  [
 			this.id,
 			this.sid,
 			this.name,
@@ -19,6 +19,17 @@ class Player {
 			this.maxHealth,
 			this.scale
 		];
+	}
+	getUpdateData() {
+		this.dataCache = [
+			this.sid,
+			this.x,
+			this.y,
+			this.angle,
+			this.buildCode,
+			this.weaponCode,
+			this.skinCode
+		]
 		return this.dataCache;
 	}
 	constructor(socket) {
@@ -38,7 +49,11 @@ class Player {
 		this.dirX = null;
 		this.dirY = null;
 		this.score = 0; // Score is the same as gold
+		this.weaponCode = 0; // 0 == Default hammer
+		this.buildCode = -1; // -1 == No build item
+		this.skinCode = 0; // 0 == No skin / hat
 		this.dataCache = null;
+		this.team = null;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";

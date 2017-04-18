@@ -1,7 +1,7 @@
 (() => {
     window.overrideIP = '127.0.0.1:5000';
     window.useOverrideIP = true;
-    
+
     let log = console.debug; // Can change to console.log if needed
     console.clear();
     if (localStorage['load_local_script']) {
@@ -99,7 +99,7 @@
                 });
                 s.on('3', data => {
                     // Player update
-                    console.log("Raw player update info:", data);
+                    log("Raw player update info:", data);
                 });
                 // TODO: capture more incoming traffic
 

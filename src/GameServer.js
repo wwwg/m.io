@@ -1,7 +1,6 @@
 // External package imports
 var uws = require('uws');
 var io = require('socket.io');
-const PACKET = require('./utils/packetCodes');
 
 // Local imports
 var MessageHandler = require('./MessageHandler');
@@ -9,6 +8,8 @@ var Player = require('./Player');
 var log = require('./utils/Logger');
 var Manager = require('./PlayerManager');
 var Leaderboard = require('./Leaderboard');
+var Utils = require('./utils/Utils');
+const PACKET = require('./utils/packetCodes');
 
 class GameServer {
 	start() {
@@ -43,7 +44,9 @@ class GameServer {
 				if (p.player.alive) {
 					// Handle alive players
 					var near = me.manager.getNearPlayers(p);
-					console.log(near);
+					// Get raw player data and send to the user
+					var sdata = Utils.serializePlayerArray(near);
+					me.manager.sendRawUpdate(p, sdata);
 				} else {
 					// Handle dead / idle players
 				}
@@ -68,7 +71,7 @@ class GameServer {
 				config.unknownName = "unknown";
 			}
 			if (!config.tickInterval) {
-				config.tickInterval = 50;
+				config.tickInterval = 350;
 			}
 			if (!config.mapSize) {
 				config.mapSize = 12e3; // Default map size, the client currently only supports a map size of 12,000
@@ -91,7 +94,7 @@ class GameServer {
 			var me = this;
 			me.gameClock = setInterval(() => {
 				me.clockCallback.call(me); // Make sure the clock callback is called within the context of the gameServer
-			}, me.tickInterval);
+			}, me.config.tickInterval);
 		}
 	}
 }
