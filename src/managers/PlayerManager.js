@@ -8,7 +8,7 @@ class PlayerManager {
 		socket.emit('dtv', t);
 	}
 	addPlayer(socket, player) {
-		socket.emit(PACKET.PLAYER_ADD, player.getData(), false);
+		socket.emit(PACKET.PLAYER_ADD, player.player.getData(), false);
 	}
 	addSelfPlayer(socket) {
 		socket.emit(PACKET.PLAYER_ADD, socket.player.getData(), true);
@@ -40,10 +40,14 @@ class PlayerManager {
 		for (var i = 0; i < players.length; ++i) {
 			var px = players[i].player.x;
 			var py = players[i].player.y;
-			if ((x1 <= px <= x2) &&
-				 (y1 <= y <= y2)) {
+			if ((x1 <= px  && px <= x2) &&
+				 (y1 <= py  && py <= y2)) {
 					// The player is within the square
 					near.push(players[i]);
+					if (!player.player.playersNear.includes(players[i])) {
+						// Emit player add to the socket
+						this.addPlayer(player, players[i]);
+					}
 			}
 		}
 		player.player.playersNear = near;
@@ -60,8 +64,7 @@ class PlayerManager {
 		}
 	}
 	add(socket) {
-		socket.player = new Player(socket);
-		socket.player.sid = this.players.length;
+		socket.player = new Player(socket, this.players.length);
 		this.players.push(socket);
 	}
 	remove(socket) {

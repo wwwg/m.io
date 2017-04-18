@@ -101,6 +101,9 @@
                     // Player update
                     log("Raw player update info:", data);
                 });
+                s.on('4', id => {
+                    log('player with id', id, 'is removed');
+                })
                 s.on('sa', data => {
                     log("Raw clan player data:", data);
                 });

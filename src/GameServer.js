@@ -137,11 +137,11 @@ class GameServer {
 			}
 			if (!config.updateRadius) {
 				// Players will be send information about players within 500 units of them
-				config.updateRadius = 500;
+				config.updateRadius = 1000;
 			}
 			if (!config.playerSpeed) {
 				// Amount of units to move each game tick
-				config.playerSpeed = 60;
+				config.playerSpeed = 80;
 			}
 			if (!config.snowSpeed) {
 				// Speed of the player while in the snow biome

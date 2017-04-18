@@ -33,12 +33,12 @@ class Player {
 		]
 		return this.dataCache;
 	}
-	constructor(socket) {
+	constructor(socket, sid) {
 		this.socket = socket;
 		this.connected = false;
 		this.spawned = false;
 		this.alive = false;
-		this.sid = 0;
+		this.sid = sid;
 		this.angle = 0;
 		this.x = -1;
 		this.y = -1;
