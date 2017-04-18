@@ -23,11 +23,8 @@ class MessageHandler {
 	}
 	disconn(socket) {
 		log.all('Player disconnected,', socket.player.name);
-		for (var i = 0; i < socket.player.playersNear.length; ++i) {
-			// Tell each player near this one that it's gone
-			socket.player.playersNear[i].emit(PACKET.PLAYER_REMOVE, 
+		this.io.emit(PACKET.PLAYER_REMOVE, 
 																			socket.player.id);
-		}
 		this.manager.remove(socket);
 	}
 	angle(socket, ang) {

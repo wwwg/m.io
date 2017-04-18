@@ -88,14 +88,34 @@ class GameServer {
 							my = p.player.y + speed;
 						}
 					}
-					// Update coords if needed
-					if (mx &&
-					     Utils.coordInBounds(mx, me.config.mapSize)) {
-						p.player.x = mx;
+					if (mx || my) {
+						// Player collision
+						var shouldMoveX = true;
+						var shouldMoveY = true;
+						for (var j = 0; j < me.manager.players.length; ++j) {
+							var p2 = me.manager.players[j];
+							if (p == p2 || p2.alive === false)
+								continue;
+							var px = p2.player.x;
+							var py = p2.player.y;
+							var cx = mx || p.player.x;
+							var cy = my || p.player.y;
+							var canMove = Utils.checkCollide(cx, cy, px, py, 3);
+							shouldMoveX = canMove.x || canMove.y;
+							shouldMoveY = canMove.y || canMove.x;
 					}
-					if (my &&
-					     Utils.coordInBounds(my, me.config.mapSize)) {
-						p.player.y = my;
+						// Border collision
+						if (shouldMoveX)
+							shouldMoveX = Utils.coordInBounds(mx, me.config.mapSize);
+						if (shouldMoveY)
+							shouldMoveY = Utils.coordInBounds(my, me.config.mapSize);
+						// Update coords if needed
+						if (mx && shouldMoveX) {
+							p.player.x = mx;
+						}
+						if (my && shouldMoveY) {
+							p.player.y = my;
+						}
 					}
 
 					// Update the players around the player
@@ -137,7 +157,7 @@ class GameServer {
 			}
 			if (!config.updateRadius) {
 				// Players will be send information about players within 500 units of them
-				config.updateRadius = 1000;
+				config.updateRadius = 1500;
 			}
 			if (!config.playerSpeed) {
 				// Amount of units to move each game tick

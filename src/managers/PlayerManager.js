@@ -43,8 +43,9 @@ class PlayerManager {
 			if ((x1 <= px  && px <= x2) &&
 				 (y1 <= py  && py <= y2)) {
 					// The player is within the square
-					near.push(players[i]);
-					if (!player.player.playersNear.includes(players[i])) {
+					if (players[i].player.alive)
+						near.push(players[i]);
+					if (!player.player.playersNear.includes(players[i]) && players[i] != player) {
 						// Emit player add to the socket
 						this.addPlayer(player, players[i]);
 					}
