@@ -10,5 +10,12 @@ module.exports = {
     LOAD_GAME_OBJ: "6",
     GATHER: "7",
     WIGGLE: "8",
-    CHAT: "ch"
+    CLAN_CREATE: "8",
+    CLAN_REQ_JOIN: "10",
+    CHAT: "ch",
+    CLAN_DEL: "ad",
+    PLAYER_SET_CLAN: "st",
+    SET_CLAN_PLAYERS: "sa",
+    CLAN_ADD: "ac",
+    CLAN_NOTIFY: "an"
 }
