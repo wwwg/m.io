@@ -146,6 +146,7 @@ class GameServer {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
 		}
+		global.mainGameServer = me;
 	}
 }
 
