@@ -110,7 +110,7 @@ class GameServer {
 							var py = p2.player.y;
 							var cx = mx || p.player.x;
 							var cy = my || p.player.y;
-							var canMove = Utils.checkCollide(cx, cy, px, py, 3);
+							var canMove = Utils.checkCollide(cx, cy, px, py, 6);
 							shouldMoveX = canMove.x || canMove.y;
 							shouldMoveY = canMove.y || canMove.x;
 					}
@@ -177,9 +177,12 @@ class GameServer {
 				// Speed of the player while in the snow biome
 				config.snowSpeed = config.playerSpeed / 1.5;
 			}
-			if (!config.minimapSpeed) {
-				// Minimap update speed
-				config.minimapSpeed = 2000;
+			if (!config.statUpdateSpeed) {
+				// Minimap and leaderboard update speed
+				config.statUpdateSpeed = 2000;
+			}
+			if (!config.leaderboardCount) {
+				config.leaderboardCount = 10;
 			}
 			var me = this;
 			this.config = config;

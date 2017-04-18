@@ -21,7 +21,7 @@ class MinimapManager {
         var me = this;
         this.clock = setInterval(() => {
             me.minimapTick.call(me);
-        }, me.serv.config.minimapSpeed);
+        }, me.serv.config.statUpdateSpeed);
     }
 }
 module.exports = MinimapManager;
