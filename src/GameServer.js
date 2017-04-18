@@ -186,7 +186,7 @@ class GameServer {
 			}
 			if (!config.maxPlayers) {
 				// The default servers only allow 50 players
-				config.maxPlayers = 1;
+				config.maxPlayers = 50;
 			}
 			var me = this;
 			this.config = config;
