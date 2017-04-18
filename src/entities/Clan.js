@@ -3,13 +3,19 @@ class Clan {
         for (var i = 0; i < this.members.length; ++i) {
             if (this.members[i].player.sid === player.player.sid) {
                 this.members[i].player.team = null;
+                this.members[i].player.clan = null;
                 this.members.splice(i, 1);
                 return true;
             }
         }
         return false;
     }
+    isPlayerOwner(player) {
+        return (player.player.sid === this.owner.player.sid);
+    }
     addPlayer(player) {
+        if (this.owner === null)
+            this.owner = player; // Update clan owner
         player.player.team = this.name;
         player.player.clan = this;
         this.members.push(player);
@@ -38,6 +44,7 @@ class Clan {
         }
         this.members = [];
         this.serializedMemberCache = [];
+        this.owner = null;
     }
 }
 module.exports = Clan;

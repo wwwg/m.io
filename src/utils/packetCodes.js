@@ -11,6 +11,7 @@ module.exports = {
     GATHER: "7",
     WIGGLE: "8",
     CLAN_CREATE: "8",
+    PLAYER_LEAVE_CLAN: "9",
     CLAN_REQ_JOIN: "10",
     CHAT: "ch",
     CLAN_DEL: "ad",

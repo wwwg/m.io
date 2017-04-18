@@ -58,6 +58,23 @@ class MessageHandler {
 		var data = socket.player.clan.serializeMembers();
 		socket.emit(PACKET.SET_CLAN_PLAYERS, data);
 	}
+	deleteClan(clan) {
+		this.io.emit(PACKET.CLAN_DEL, clan.name);
+		this.clans.remove(clan.name);
+	}
+	clanLeave(socket) {
+		if (socket.player.team) {
+			// It's safe to remove the player's clan
+			log.all('Player "' + socket.player.name + "\" is leaving their clan " + socket.player.team);
+			if (socket.player.clan.isPlayerOwner(socket)) {
+				this.msgHandler.deleteClan.call(this, socket.player.clan);
+			}
+			for (var i = 0; i < socket.player.clan.members.length; ++i) {
+				this.msgHandler.syncClanPlayers(socket.player.clan.members[i]);
+			}
+			socket.player.clan.removePlayer(socket);
+		}
+	}
 	clanCreate(socket, clanName) {
 		// TODO: handle clan creation attempts
 		if (!this.clans.clanExists(clanName)) {
