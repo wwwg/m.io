@@ -75,34 +75,36 @@ class GameServer {
 				var p = me.manager.players[i];
 				if (p.player.alive) {
 					// Handle alive players
-					var moveCoords = me.phys.movePlayer.call(me, p);
-					var mx = moveCoords[0];
-					var my = moveCoords[1];
-					var collide = me.phys.playerCollision.call(me, p, mx, my);
-					var shouldMoveX = collide;
-					var shouldMoveY = collide;
-					// Retest movement for border collision
-					if (shouldMoveX || shouldMoveY) {
-						/*
-							The reason why shouldMoveX/Y is tested
-							for twice is to ensure that the border
-							collision is only calculated when the player
-							should move.
-						*/
-						collide = me.phys.borderCollision.call(me, mx, my);
-						if (shouldMoveX === true) {
-							shouldMoveX = collide[0];
-						}
-						if (shouldMoveY === true) {
-							shouldMoveY = collide[1];
-						}
+					if (me.phys.needsToMove(p)) {
+						var moveCoords = me.phys.movePlayer.call(me, p);
+						var mx = moveCoords[0];
+						var my = moveCoords[1];
+						var collide = me.phys.playerCollision.call(me, p, mx, my);
+						var shouldMoveX = collide;
+						var shouldMoveY = collide;
+						// Retest movement for border collision
+						if (shouldMoveX || shouldMoveY) {
+							/*
+								The reason why shouldMoveX/Y is tested
+								for twice is to ensure that the border
+								collision is only calculated when the player
+								should move.
+							*/
+							collide = me.phys.borderCollision.call(me, mx, my);
+							if (shouldMoveX === true) {
+								shouldMoveX = collide[0];
+							}
+							if (shouldMoveY === true) {
+								shouldMoveY = collide[1];
+							}
 
-						// Update coords if needed
-						if (mx && shouldMoveX) {
-							p.player.x = mx;
-						}
-						if (my && shouldMoveY) {
-							p.player.y = my;
+							// Update coords if needed
+							if (mx && shouldMoveX) {
+								p.player.x = mx;
+							}
+							if (my && shouldMoveY) {
+								p.player.y = my;
+							}
 						}
 					}
 

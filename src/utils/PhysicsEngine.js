@@ -1,6 +1,9 @@
 var Utils = require('./Utils');
 
 class PhysicsEngine {
+	needsToMove(p) {
+		return (p.player.downX || p.player.downY);
+	}
 	playerCollision(p, mx, my) {
 		// Method is called within the context of the GameServer
 		var me = this;
@@ -13,7 +16,7 @@ class PhysicsEngine {
 			var py = p2.player.y;
 			var cx = mx;
 			var cy = my;
-			var s = 50;
+			var s = 60;
 			var hitBox = [
 				[px - s, py - s],
 				[px - s, py + s],
