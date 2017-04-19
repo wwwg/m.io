@@ -42,6 +42,21 @@ class Utils {
             a: (!(r.x1 <= x1 && x1<= r.x2) && !(r.y1 <= y1 && y1 <= r.y2))
         };
     }
+    static inPolygon(pt, poly) {
+        var x = pt[0]
+        var y = pt[1];
+        var inside = false;
+        for (var i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            var xi = poly[i][0], yi = poly[i][1];
+            var xj = poly[j][0], yj = poly[j][1];
+
+            var intersect = ((yi > y) != (yj > y))
+                && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+            if (intersect) inside = !inside;
+        }
+
+        return inside;
+    };
 }
 
 module.exports = Utils;

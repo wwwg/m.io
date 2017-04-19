@@ -78,9 +78,9 @@ class GameServer {
 					var moveCoords = me.phys.movePlayer.call(me, p);
 					var mx = moveCoords[0];
 					var my = moveCoords[1];
-					var collideSet = me.phys.playerCollision.call(me, p);
-					var shouldMoveX = collideSet[0];
-					var shouldMoveY = collideSet[1];
+					var collide = me.phys.playerCollision.call(me, p, mx, my);
+					var shouldMoveX = collide;
+					var shouldMoveY = collide;
 					// Retest movement for border collision
 					if (shouldMoveX || shouldMoveY) {
 						/*
@@ -89,12 +89,12 @@ class GameServer {
 							collision is only calculated when the player
 							should move.
 						*/
-						collideSet = me.phys.borderCollision.call(me, mx, my);
-						if (shouldMoveX) {
-							shouldMoveX = collideSet[0];
+						collide = me.phys.borderCollision.call(me, mx, my);
+						if (shouldMoveX === true) {
+							shouldMoveX = collide[0];
 						}
-						if (shouldMoveY) {
-							shouldMoveY = collideSet[1];
+						if (shouldMoveY === true) {
+							shouldMoveY = collide[1];
 						}
 
 						// Update coords if needed

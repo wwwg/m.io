@@ -23,12 +23,12 @@ class PlayerManager {
 		socket.emit(PACKET.PLAYER_START, socket.player.sid);
 	}
 	sendChat(source, recipient, msg) {
-		source.emit(PACKET.CHAT, recipient.player.sid, msg);
+		recipient.emit(PACKET.CHAT, source.player.sid, msg);
 	}
 	sendObj(socket, data) {
 		socket.emit(PACKET.LOAD_GAME_OBJ, data);
 	}
-	getNearPlayers(player) {
+	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"
 		var x = player.player.x;
 		var y = player.player.y;
@@ -46,8 +46,12 @@ class PlayerManager {
 			if ((x1 <= px  && px <= x2) &&
 				 (y1 <= py  && py <= y2)) {
 					// The player is within the square
-					if (players[i].player.alive)
+					if (players[i].player.alive) {
+						if (players[i] == player && avoidSelf) {
+							continue;
+						}
 						near.push(players[i]);
+					}
 					if (!player.player.playersNear.includes(players[i]) && players[i] != player) {
 						// Emit player add to the socket
 						this.addPlayer(player, players[i]);

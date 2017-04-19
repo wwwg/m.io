@@ -34,6 +34,7 @@ class Player {
 		return this.dataCache;
 	}
 	constructor(socket, sid) {
+		var me = this;
 		this.socket = socket;
 		this.connected = false;
 		this.spawned = false;
@@ -45,6 +46,7 @@ class Player {
 		this.name = "unknown";
 		this.id = Player.getId();
 		this.scale = 35; // default
+		this.collScale = me.scale * 1.1;
 		this.health = 100;
 		this.maxHealth = 100; // default
 		this.score = 0; // Score is the same as gold
