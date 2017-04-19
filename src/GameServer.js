@@ -75,38 +75,15 @@ class GameServer {
 				var p = me.manager.players[i];
 				if (p.player.alive) {
 					// Handle alive players
+					var moveCoords = me.phys.movePlayer.call(me, p);
+					var mx = moveCoords[0];
+					var my = moveCoords[1];
 
-					// Move player
-					var mx = null;
-					var my = null;
-					var speed = me.config.playerSpeed;
-					if (Utils.isInSnow(p)) {
-						speed = me.config.snowSpeed;
-					}
-					if (p.player.downX) {
-						// The player needs to be translated across the X axis
-						if (p.player.dirX == "l") {
-							// Player moves left
-							mx = p.player.x - speed;
-						} else if (p.player.dirX == "r") {
-							// Player moves right
-							mx = p.player.x + speed;
-						}
-					}
-					if (p.player.downY) {
-						// The player needs to be translated across the Y axis
-						if (p.player.dirY == "u") {
-							// Player moves up
-							my = p.player.y - speed;
-						} else if (p.player.dirY == "d") {
-							// Player moves down
-							my = p.player.y + speed;
-						}
-					}
 					if (mx || my) {
 						// Player collision
 						var shouldMoveX = true;
 						var shouldMoveY = true;
+
 						for (var j = 0; j < me.manager.players.length; ++j) {
 							var p2 = me.manager.players[j];
 							if (p == p2 || p2.alive === false)
@@ -118,7 +95,7 @@ class GameServer {
 							var canMove = Utils.checkCollide(cx, cy, px, py, 6);
 							shouldMoveX = canMove.x || canMove.y;
 							shouldMoveY = canMove.y || canMove.x;
-					}
+						}
 						// Border collision
 						if (shouldMoveX)
 							shouldMoveX = Utils.coordInBounds(mx, me.config.mapSize);
