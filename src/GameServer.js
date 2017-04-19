@@ -81,21 +81,10 @@ class GameServer {
 
 					if (mx || my) {
 						// Player collision
-						var shouldMoveX = true;
-						var shouldMoveY = true;
+						var collideSet = me.phys.playerCollision.call(me, p);
+						var shouldMoveX = collideSet[0];
+						var shouldMoveY = collideSet[1];
 
-						for (var j = 0; j < me.manager.players.length; ++j) {
-							var p2 = me.manager.players[j];
-							if (p == p2 || p2.alive === false)
-								continue;
-							var px = p2.player.x;
-							var py = p2.player.y;
-							var cx = mx || p.player.x;
-							var cy = my || p.player.y;
-							var canMove = Utils.checkCollide(cx, cy, px, py, 6);
-							shouldMoveX = canMove.x || canMove.y;
-							shouldMoveY = canMove.y || canMove.x;
-						}
 						// Border collision
 						if (shouldMoveX)
 							shouldMoveX = Utils.coordInBounds(mx, me.config.mapSize);

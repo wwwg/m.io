@@ -1,8 +1,30 @@
 var Utils = require('./Utils');
 
 class PhysicsEngine {
+	playerCollision(p) {
+		// Method is called within the context of the GameServer
+		var me = this;
+		var shouldMoveX = true;
+		var shouldMoveY = true;
+		for (var j = 0; j < me.manager.players.length; ++j) {
+			var p2 = me.manager.players[j];
+			if (p == p2 || p2.alive === false)
+				continue;
+			var px = p2.player.x;
+			var py = p2.player.y;
+			var cx = mx || p.player.x;
+			var cy = my || p.player.y;
+			var canMove = Utils.checkCollide(cx, cy, px, py, 6);
+			shouldMoveX = canMove.x || canMove.y;
+			shouldMoveY = canMove.y || canMove.x;
+		}
+		return [
+			shouldMoveX,
+			shouldMoveY
+		];
+	}
 	movePlayer(p) {
-		// This method is called within the context of the gameServer
+		// This method is called within the context of the GameServer
 		var me = this;
 		// The current PhysicsEngine instance
 		var phys = me.phys;
