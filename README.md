@@ -3,21 +3,23 @@ The goal of the m.io project is to create an open source Moomoo.io server implem
 
 # What does m.io currently support?
 Here is a list of the features implemented in m.io, please note that the project is currently work in progress.
-- Basic player functionality: ✓
+- Player managment: ✓
 - Customizability: ✓
 - Internal game clock: ✓
-- Collision engine: ✓
-- Complete clan support: ✓
+- Clans: ✓
 - Configurable player limit: ✓
 - Leaderboard: ✓
 - Minimap: ✓
 - Chat: ✓
+- Day / night cycle: Partial support
+- Robust collision engine: ✘
 - PvP: ✘
 - Shop: ✘
 - Items: ✘
 - Projectile Physics: ✘
 - Game Objects: ✘
-Other unique features are planned such as multi world servers and game modes.
+<br>
+Everything marked as an X is a planned feature. Other unique features are planned such as multi world servers and game modes.
 
 # Directory roadmap
 `src/` - The server source code<br>
