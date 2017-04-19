@@ -1,5 +1,7 @@
 var Tree = require('../entities/Tree');
 var Stone = require('../entities/Stone');
+var Bush = require('../entities/Bush');
+
 var GameObj = require('../entities/GameObject');
 var Utils = require('../utils/Utils');
 
@@ -26,6 +28,11 @@ class GameManager {
 		socket.player.objsNear = near;
 		return near;
 	}
+	getSpawnableObj() {
+		return this.spawnableObjs[
+			Utils.rand(this.spawnableObjs.length)
+		];
+	}
 	getRandCoord() {
 		var me = this;
 		return Utils.rand(me.gameServer.config.mapSize);
@@ -35,7 +42,8 @@ class GameManager {
 		this.objLen = amount;
 		for (var i = 0; i < amount; ++i) {
 			// For now just generate trees
-			this.objs.push(new Stone(i));
+			var RandomObject = this.getSpawnableObj();
+			this.objs.push(new RandomObject(i));
 			this.objs[i].x = this.getRandCoord();
 			this.objs[i].y = this.getRandCoord();
 		}
@@ -44,6 +52,11 @@ class GameManager {
 		this.gameServer = gameServer;
 		this.objs = [];
 		this.objLen = 0;
+		this.spawnableObjs = [
+			Tree,
+			Stone,
+			Bush
+		]; // Maybe add more later for new game modes?
 	}
 }
 module.exports = GameManager;
