@@ -29,8 +29,8 @@ class PhysicsEngine {
 		// The current PhysicsEngine instance
 		var phys = me.phys;
 		// Move player
-		var mx = null;
-		var my = null;
+		var mx = p.player.x;
+		var my = p.player.y;
 		var speed = me.config.playerSpeed;
 		if (Utils.isInSnow(p)) {
 			speed = me.config.snowSpeed;
@@ -58,6 +58,15 @@ class PhysicsEngine {
 		return [
 			mx,
 			my
+		];
+	}
+	borderCollision(mx, my) {
+		var me = this;
+		var mvx = Utils.coordInBounds(mx, me.config.mapSize);
+		var mvy = Utils.coordInBounds(my, me.config.mapSize);
+		return [
+			mvx,
+			mvy
 		];
 	}
 	constructor(serv) {

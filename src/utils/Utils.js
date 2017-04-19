@@ -10,7 +10,7 @@ class Utils {
         return serialData;
     }
     static coordInBounds(c, bounds) {
-        return (c <= (bounds - 10) && c >= 10);
+        return (c <= (bounds) && c >= 0);
     }
     static coordsIn(x, y, x2, y2, bounds) {
         var rx1 = x2 - bounds;
