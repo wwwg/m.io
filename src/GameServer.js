@@ -63,6 +63,9 @@ class GameServer {
 			socket.on(PACKET.AUTO_ATK, () => {
 				return me.msgHandler.autoAttack.call(me, socket);
 			});
+			socket.on(PACKET.PLAYER_ATTACK, (atk, buildDir) => {
+				return me.msgHandler.attack.call(me, socket, atk, buildDir);
+			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});

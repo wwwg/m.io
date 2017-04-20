@@ -28,6 +28,13 @@ class PlayerManager {
 	sendObj(socket, data) {
 		socket.emit(PACKET.LOAD_GAME_OBJ, data);
 	}
+	sendAttack(to, from, attacking) {
+		console.log(attacking);
+		to.emit(PACKET.GATHER_ANIM,
+				from.player.sid,
+				attacking,
+				from.player.weaponCode);
+	}
 	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"
 		var x = player.player.x;
