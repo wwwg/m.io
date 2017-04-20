@@ -23,7 +23,7 @@ Everything marked as an X is a planned feature. Other unique features are planne
 
 # Running the server
 Because m.io is in development, ther are no current scripts to ease installation and deplyment of an m.io server. Here are manual instructions on \*nix:
-**PLEASE NOTE that running m.io requires node.js 6.0 or higher***
+**PLEASE NOTE that running m.io requires node.js 6.0 or higher**
 ```sh
 git clone https://github.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io.git;
 cd m.io;
