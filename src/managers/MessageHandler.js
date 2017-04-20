@@ -96,6 +96,16 @@ class MessageHandler {
 			}
 		}
 	}
+	attack(socket, atk, buildDir) {
+		if (!buildDir) {
+			// The player has actually attacked
+			if (socket.player.alive) {
+				socket.player.attacking = !!atk; // Convert to bool
+			}
+		} else {
+			// TODO: handle player building
+		}
+	}
 	clanKick(socket, sid) {
 		var p = this.manager.getBySID(sid);
 		if (p && socket.player.clan) {
