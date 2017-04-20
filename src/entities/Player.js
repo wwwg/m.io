@@ -33,6 +33,9 @@ class Player {
 		]
 		return this.dataCache;
 	}
+	get attackingState() {
+		return (this.autoAtk || this.attacking);
+	}
 	constructor(socket, sid) {
 		var me = this;
 		this.socket = socket;
