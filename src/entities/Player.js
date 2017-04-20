@@ -47,6 +47,7 @@ class Player {
 		this.objsNear = [];
 		this.dataCache = null;
 		this.angle = 0;
+		this.attackDist = 10;
 		this.x = -1;
 		this.y = -1;
 

@@ -66,6 +66,19 @@ class PhysicsEngine {
 		}
 		return !inBox;
 	}
+	getAttackLocation(p) {
+		var me = this;
+		var a = p.player.angle;
+		var x = p.player.x;
+		var y = p.player.y;
+		var d = p.player.attackDist;
+		var x2 = (d * Math.cos(a)) + x;	
+		var y2 = (d * Math.sin(a)) + y;
+		return [
+			x2,
+			y2	
+		];
+	}
 	movePlayer(p) {
 		// This method is called within the context of the GameServer
 		var me = this;

@@ -88,7 +88,7 @@ class GameServer {
 						var moveCoords = me.phys.movePlayer.call(me, p);
 						var mx = moveCoords[0];
 						var my = moveCoords[1];
-						// Handle player collision
+						// Handle player playerCollisionon
 						var pcollide = me.phys.playerCollision.call(me, p, mx, my);
 						var shouldMoveX = pcollide;
 						var shouldMoveY = pcollide;
