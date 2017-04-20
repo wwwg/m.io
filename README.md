@@ -28,7 +28,7 @@ Because m.io is in development, ther are no current scripts to ease installation
 git clone https://github.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io.git;
 cd m.io;
 npm install;
-npm run test; # Will start the server
+npm run test; # Will start the server on port 5000
 ```
 
 # Directory roadmap
