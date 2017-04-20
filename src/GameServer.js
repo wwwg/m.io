@@ -184,6 +184,10 @@ class GameServer {
 				// The default servers only allow 50 players
 				config.maxPlayers = 50;
 			}
+			if (!config.gameObjects) {
+				// The amount game objects in the world
+				config.gameObjects = 200; 
+			}
 			var me = this;
 			this.config = config;
 			this.io = null; // The socket.io server
@@ -197,7 +201,7 @@ class GameServer {
 			this.minimap = new Minimap(me);
 			this.objs = new GameObjManager(me);
 			this.phys = new PhysicsEngine(me);
-			this.objs.generateObjects(100);
+			this.objs.generateObjects(config.gameObjects);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
