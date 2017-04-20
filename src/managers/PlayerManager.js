@@ -79,6 +79,9 @@ class PlayerManager {
 			var n = near[i];
 			n.emit(PACKET.WIGGLE, socket.player.angle, object.sid);
 		}
+		// Update player stats
+		socket.player.gather(object,
+							this.gameServer.config.gatherMultiplier);
 	}
 	getBySID(sid) {
 		for (var i = 0; i < this.players.length; ++i) {

@@ -222,6 +222,9 @@ class GameServer {
 				// The amount game objects in the world
 				config.gameObjects = 200; 
 			}
+			if (!config.gatherMultiplier) {
+				config.gatherMultiplier = 1;
+			}
 			var me = this;
 			this.config = config;
 			this.atkInterval = config.tickInterval * 2;

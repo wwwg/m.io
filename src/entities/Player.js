@@ -36,6 +36,21 @@ class Player {
 	get attackingState() {
 		return (this.autoAtk || this.attacking);
 	}
+	gather(object, multiplier) {
+		var me = this;
+		var rate = me.gatherRate * multiplier;
+		switch (object.constructor.name) {
+			case "Stone":
+				me.stone += rate;
+				break;
+			case "Tree":
+				me.wood += rate;
+				break;
+			case "Bush":
+				me.food += rate;
+				break;
+		}
+	}
 	constructor(socket, sid) {
 		var me = this;
 
@@ -68,6 +83,7 @@ class Player {
 		this.wood = 0;
 		this.food = 0;
 		this.score = 0; // Score is the same as gold
+		this.gatherRate = 1;
 
 		// Item based properties
 		this.weaponCode = 0; // 0 == Default hammer
