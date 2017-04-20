@@ -136,7 +136,6 @@ class GameServer {
 					// Handle dead / idle players
 				}
 			}
-			// TODO: Implement more clock based game logic
 			me.currentTick++;
 		}
 	}
@@ -147,6 +146,19 @@ class GameServer {
 				var p = me.manager.players[i];
 				if (p.player.alive) {
 					if (p.player.attackingState) {
+						var al = me.phys.getAttackLocation(p);
+						var objn = me.objs.objs;
+						for (var j = 0; j < objn.length; ++j) {
+							var o = objn[j];
+							var objHit = me.phys.inEntity({
+								x: al[0],
+								y: al[1]
+							}, o, o.scale);
+							if (objHit) {
+								// Player has hit object
+								me.manager.hitObject(p, o);
+							}
+						}
 						// Alert nearby players of the attack start
 						var near = p.player.playersNear;
 						for (var j = 0; j < near.length; ++j) {

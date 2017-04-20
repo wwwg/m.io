@@ -31,6 +31,23 @@ class PhysicsEngine {
 		}
 		return !inBox;
 	}
+	inEntity(p, entity, s) {
+		var x1 = p.x;
+		var y1 = p.y;
+
+		var x2 = entity.x;
+		var y2 = entity.y;
+		var hitBox = [
+			[x2 - s, y2 - s],
+			[x2 - s, y2 + s],
+			[x2 + s, y2 + s],
+			[x2 + s, y2 - s]
+		];
+		return (Utils.inPolygon([
+				x1,
+				y1
+			], hitBox));
+	}
 	playerCollision(p, mx, my) {
 		// Method is called within the context of the GameServer
 		/*

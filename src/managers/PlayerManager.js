@@ -71,6 +71,10 @@ class PlayerManager {
 		player.player.playersNear = near;
 		return near;
 	}
+	hitObject(socket, object) {
+		log.all(socket.player.name + ' has hit a ' + object.constructor.name);
+		// TODO: handle object hitting
+	}
 	getBySID(sid) {
 		for (var i = 0; i < this.players.length; ++i) {
 			if (this.players[i].player.sid === sid) return this.players[i];
