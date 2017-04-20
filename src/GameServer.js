@@ -73,49 +73,57 @@ class GameServer {
 		if (me.alive) {
 			for (var i = 0; i < me.manager.players.length; ++i) {
 				var p = me.manager.players[i];
+				// Update the players around the player
+				var near = me.manager.getNearPlayers(p);
+				var objsNear = me.objs.getObjsNear(p,
+												   me.config.updateRadius);
+
 				if (p.player.alive) {
 					// Handle alive players
 					if (me.phys.needsToMove(p)) {
+						// Handle player movement
 						var moveCoords = me.phys.movePlayer.call(me, p);
 						var mx = moveCoords[0];
 						var my = moveCoords[1];
-						var collide = me.phys.playerCollision.call(me, p, mx, my);
-						var shouldMoveX = collide;
-						var shouldMoveY = collide;
-						// Retest movement for border collision
+						// Handle player collision
+						var pcollide = me.phys.playerCollision.call(me, p, mx, my);
+						var shouldMoveX = pcollide;
+						var shouldMoveY = pcollide;
 						if (shouldMoveX || shouldMoveY) {
+							// Handle game object collision
+							var ocollide = me.phys.objectCollision.call(me, p, mx, my);
+							shouldMoveX = ocollide;
+							shouldMoveY = ocollide;
 							/*
+								Retest movement for border collision
 								The reason why shouldMoveX/Y is tested
-								for twice is to ensure that the border
+								more than one is to ensure that the border
 								collision is only calculated when the player
 								should move.
 							*/
-							collide = me.phys.borderCollision.call(me, mx, my);
-							if (shouldMoveX === true) {
-								shouldMoveX = collide[0];
+							if (shouldMoveX || shouldMoveY) {
+								var bcollide = me.phys.borderCollision.call(me, mx, my);
+								if (shouldMoveX === true) {
+									shouldMoveX = bcollide[0];
+								}
+								if (shouldMoveY === true) {
+									shouldMoveY = bcollide[1];
+								}
 							}
-							if (shouldMoveY === true) {
-								shouldMoveY = collide[1];
-							}
-
 							// Update coords if needed
-							if (mx && shouldMoveX) {
+							if (shouldMoveX) {
 								p.player.x = mx;
 							}
-							if (my && shouldMoveY) {
+							if (shouldMoveY) {
 								p.player.y = my;
 							}
 						}
 					}
-
-					// Update the players around the player
-					var near = me.manager.getNearPlayers(p);
 					// Get raw player data and send to the user
 					var sdata = Utils.serializePlayerArray(near);
 					me.manager.sendRawUpdate(p, sdata);
 
 					// Update game objects
-					var objsNear = me.objs.getObjsNear(p, me.config.updateRadius);
 					var oData = [];
 					for (var j = 0; j < objsNear.length; ++j) {
 						oData = oData.concat(objsNear[j].serialize());
@@ -159,7 +167,7 @@ class GameServer {
 			}
 			if (!config.playerSpeed) {
 				// Amount of units to move each game tick
-				config.playerSpeed = 80;
+				config.playerSpeed = 60;
 			}
 			if (!config.snowSpeed) {
 				// Speed of the player while in the snow biome

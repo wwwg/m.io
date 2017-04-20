@@ -4,8 +4,39 @@ class PhysicsEngine {
 	needsToMove(p) {
 		return (p.player.downX || p.player.downY);
 	}
+	objectCollision(p, mx, my) {
+		/*
+			TODO: Only check collision of
+			objects around the player 
+		*/
+		var me = this;
+		var objs = me.objs.objs;
+		var inBox = false;
+		for (var j = 0; j < objs.length; ++j) {
+			var obj = objs[j];
+			var s = obj.scale / 2;
+			var hitBox = [
+				[obj.x - s, obj.y - s],
+				[obj.x - s, obj.y + s],
+				[obj.x + s, obj.y + s],
+				[obj.x + s, obj.y - s]
+			];
+			inBox = (Utils.inPolygon([
+				mx,
+				my
+			], hitBox));
+			if (inBox) {
+				break;
+			}
+		}
+		return !inBox;
+	}
 	playerCollision(p, mx, my) {
 		// Method is called within the context of the GameServer
+		/*
+			TODO: Only check collision of
+			players around the player 
+		*/
 		var me = this;
 		var inBox = false;
 		for (var j = 0; j < me.manager.players.length; ++j) {
@@ -14,14 +45,12 @@ class PhysicsEngine {
 				continue;
 			var px = p2.player.x;
 			var py = p2.player.y;
-			var cx = mx;
-			var cy = my;
 			var s = 60;
 			var hitBox = [
 				[px - s, py - s],
 				[px - s, py + s],
-				[px + s, py - s],
-				[px + s, py + s]
+				[px + s, py + s],
+				[px + s, py - s]
 			];
 			/*
 			console.log(hitBox);
@@ -31,8 +60,7 @@ class PhysicsEngine {
 				mx,
 				my
 			], hitBox));
-			if (inBox === true) {
-				console.log('collide detected');
+			if (inBox) {
 				break;
 			}
 		}
