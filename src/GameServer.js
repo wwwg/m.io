@@ -151,7 +151,6 @@ class GameServer {
 						var near = p.player.playersNear;
 						for (var j = 0; j < near.length; ++j) {
 							if (p.player.attackingState) {
-								console.log('send attack');
 								me.manager.sendAttack(near[j], p, p.player.hitObj);
 							}
 						}
@@ -213,7 +212,7 @@ class GameServer {
 			}
 			var me = this;
 			this.config = config;
-			this.atkInterval = config.tickInterval * 3;
+			this.atkInterval = config.tickInterval * 2;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game
 			this.currentTick = 0;

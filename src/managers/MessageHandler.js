@@ -102,15 +102,6 @@ class MessageHandler {
 			// The player has actually attacked
 			if (socket.player.alive) {
 				socket.player.attacking = !!atk; // Convert to bool
-				if (socket.player.attackingState) {
-					// Alert nearby players of the attack start
-					var near = socket.player.playersNear;
-					for (var j = 0; j < near.length; ++j) {
-						if (socket.player.attackingState) {
-							me.manager.sendAttack(near[j], socket, socket.player.hitObj);
-						}
-					}
-				}
 			}
 		} else {
 			// TODO: handle player building
