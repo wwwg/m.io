@@ -42,6 +42,7 @@ class Player {
 		// Enviroment based properties
 		this.autoAtk = false;
 		this.attacking = false;
+		this.hitObj = false;
 		this.playersNear = [];
 		this.objsNear = [];
 		this.dataCache = null;

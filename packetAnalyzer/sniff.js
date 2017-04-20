@@ -1,6 +1,7 @@
 (() => {
     window.overrideIP = '127.0.0.1:5000';
-    window.useOverrideIP = true;
+    window.useOverrideIP = false;
+    var mySid = null;
 
     let log = console.debug; // Can change to console.log if needed
     console.clear();
@@ -87,8 +88,9 @@
                     // Chat message
                     log('Player with sid', sid, 'send message:', msg);
                 });
-                s.on('1', mySid => {
-                    console.log('I recieved my SID:', mySid);
+                s.on('1', m => {
+                    console.log('I recieved my SID:', m);
+                    mySid = m;
                 });
                 s.on('2', (data, isYou) => {
                     // console.log('Add player', data, 'isYou', isYou);
@@ -103,7 +105,7 @@
                 });
                 s.on('4', id => {
                     // log('player with id', id, 'is removed');
-                })
+                });
                 s.on('sa', data => {
                     log("Raw clan player data:", data);
                 });
@@ -112,6 +114,15 @@
                 });
                 s.on('6', data => {
                     log('load game object', data);
+                });
+                s.on('7', (sid, attacking, weapon) => {
+                    if (sid === mySid) {
+                        console.log('I attacked', {
+                            sid: sid,
+                            attacking: attacking,
+                            weapon: weapon
+                        });
+                    }
                 });
                 s.on('12', data => {
                     log('delete game object', data);

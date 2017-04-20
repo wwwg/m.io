@@ -97,20 +97,20 @@ class MessageHandler {
 		}
 	}
 	attack(socket, atk, buildDir) {
+		var me = this;
 		if (!buildDir) {
 			// The player has actually attacked
 			if (socket.player.alive) {
 				socket.player.attacking = !!atk; // Convert to bool
-				var me = this;
-				var near = socket.player.playersNear;
-				setTimeout(() => {
-					// Send player attacking state
+				if (socket.player.attackingState) {
+					// Alert nearby players of the attack start
+					var near = socket.player.playersNear;
 					for (var j = 0; j < near.length; ++j) {
-						// Serialize boolean for smaller packet size
-						var state = near[j].player.attackingState | 0;
-						me.manager.sendAttack(socket, near[j], state);
+						if (socket.player.attackingState) {
+							me.manager.sendAttack(near[j], socket, socket.player.hitObj);
+						}
 					}
-				}, 5);
+				}
 			}
 		} else {
 			// TODO: handle player building

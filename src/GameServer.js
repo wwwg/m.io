@@ -140,6 +140,26 @@ class GameServer {
 			me.currentTick++;
 		}
 	}
+	attackTick() {
+		var me = this;
+		if (me.alive) {
+			for (var i = 0; i < me.manager.players.length; ++i) {
+				var p = me.manager.players[i];
+				if (p.player.alive) {
+					if (p.player.attackingState) {
+						// Alert nearby players of the attack start
+						var near = p.player.playersNear;
+						for (var j = 0; j < near.length; ++j) {
+							if (p.player.attackingState) {
+								console.log('send attack');
+								me.manager.sendAttack(near[j], p, p.player.hitObj);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 	constructor(config) {
 		if (!config) {
 			throw new Error('Gameserver must be constructed with a configuration object.');
@@ -193,6 +213,7 @@ class GameServer {
 			}
 			var me = this;
 			this.config = config;
+			this.atkInterval = config.tickInterval * 3;
 			this.io = null; // The socket.io server
 			this.gameTime = 1; // Daytime in game
 			this.currentTick = 0;
@@ -208,6 +229,9 @@ class GameServer {
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
 			}, me.config.tickInterval);
+			me.attackClock = setInterval(() => {
+				me.attackTick.call(me);
+			}, me.atkInterval);
 		}
 		global.gameServer = me;
 	}

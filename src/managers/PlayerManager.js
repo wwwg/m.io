@@ -28,11 +28,13 @@ class PlayerManager {
 	sendObj(socket, data) {
 		socket.emit(PACKET.LOAD_GAME_OBJ, data);
 	}
-	sendAttack(to, from, attacking) {
-		console.log(attacking);
+	sendAttack(to, from, hitSomething) {
+		// Serialize bool
+		hitSomething = hitSomething | 0;
+		// Emit attack
 		to.emit(PACKET.GATHER_ANIM,
 				from.player.sid,
-				attacking,
+				hitSomething,
 				from.player.weaponCode);
 	}
 	getNearPlayers(player, avoidSelf) {
