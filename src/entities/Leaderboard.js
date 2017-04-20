@@ -23,7 +23,8 @@ class Leaderboard {
         var lb = me.getTopPlayers(me.sortPlayers());
         var data = [];
         for (var i = 0; i < lb.length; ++i) {
-            data = data.concat(me.serializePlayer(lb[i]));
+            if (lb[i].player.alive)
+                data = data.concat(me.serializePlayer(lb[i]));
         }
         // Broadcast leaderboard data
         me.gameServer.io.emit(PACKET.LEADERBOAD, data);
