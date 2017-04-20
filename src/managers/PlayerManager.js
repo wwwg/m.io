@@ -73,7 +73,12 @@ class PlayerManager {
 	}
 	hitObject(socket, object) {
 		log.all(socket.player.name + ' has hit a ' + object.constructor.name);
-		// TODO: handle object hitting
+		var near = socket.player.playersNear;
+		// Emit object wiggle to surrounding players
+		for (var i = 0; i < near.length; ++i) {
+			var n = near[i];
+			n.emit(PACKET.WIGGLE, socket.player.angle, object.sid);
+		}
 	}
 	getBySID(sid) {
 		for (var i = 0; i < this.players.length; ++i) {
