@@ -15,6 +15,7 @@ module.exports = {
     WIGGLE: "8",
     CLAN_CREATE: "8",
     PLAYER_LEAVE_CLAN: "9",
+    STAT_UPDATE: "9",
     CLAN_REQ_JOIN: "10",
     CLAN_ACC_JOIN: "11",
     CLAN_KICK: "12",
