@@ -37,6 +37,9 @@ class PlayerManager {
 				hitSomething,
 				from.player.weaponCode);
 	}
+	updateStat(socket, statName, statValue, updateUI) {
+		socket.emit(PACKET.STAT_UPDATE, statName, statValue, updateUI | 0);
+	}
 	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"
 		var x = player.player.x;
