@@ -38,40 +38,49 @@ class Player {
 	}
 	constructor(socket, sid) {
 		var me = this;
+
+		// Enviroment based properties
+		this.autoAtk = false;
+		this.playersNear = [];
+		this.objsNear = [];
+		this.dataCache = null;
+		this.angle = 0;
+		this.x = -1;
+		this.y = -1;
+
+		// Connection based properties
+		this.sid = sid;
+		this.id = Player.getId();
 		this.socket = socket;
 		this.connected = false;
 		this.spawned = false;
 		this.alive = false;
-		this.sid = sid;
-		this.angle = 0;
-		this.x = -1;
-		this.y = -1;
-		this.name = "unknown";
-		this.id = Player.getId();
-		this.scale = 35; // default
-		this.collScale = me.scale * 1.1;
+
+		// Player statistics based properties
 		this.health = 100;
-		this.maxHealth = 100; // default
-		this.score = 0; // Score is the same as gold
-		this.weaponCode = 0; // 0 == Default hammer
-		this.buildCode = -1; // -1 == No build item
-		this.skinCode = 0; // 0 == No skin / hat
-		this.dataCache = null;
-		this.team = null;
-		this.clan = null;
+		this.maxHealth = 100; // TODO: make this customizable
+		this.name = "unknown";
+		this.scale = 35; // default
 		this.stone = 0;
 		this.wood = 0;
 		this.food = 0;
-		this.playersNear = [];
-		this.objsNear = [];
-		this.joiningClan = false;
-		this.autoAtk = false;
+		this.score = 0; // Score is the same as gold
+
+		// Item based properties
+		this.weaponCode = 0; // 0 == Default hammer
+		this.buildCode = -1; // -1 == No build item
+		this.skinCode = 0; // 0 == No skin / hat
 
 		// Movement based properties
 		this.dirX = null;
 		this.dirY = null;
 		this.downX = false;
 		this.downY = false;
+
+		// Clan based properties
+		this.team = null;
+		this.clan = null;
+		this.joiningClan = false;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";

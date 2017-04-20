@@ -45,7 +45,7 @@ class PhysicsEngine {
 				continue;
 			var px = p2.player.x;
 			var py = p2.player.y;
-			var s = 60;
+			var s = p2.player.scale;
 			var hitBox = [
 				[px - s, py - s],
 				[px - s, py + s],
