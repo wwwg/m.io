@@ -84,6 +84,13 @@ class Player {
 		}
 		return false;
 	}
+	getHat(id) {
+		for (var i = 0; i < this.hats.length; ++i) {
+			if (this.hats[i].id == id)
+				return this.hats[i];
+		}
+		return null;
+	}
 	alertDeath() {
 		this.socket.emit("11");
 	}
