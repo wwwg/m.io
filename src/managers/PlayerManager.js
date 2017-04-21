@@ -40,10 +40,17 @@ class PlayerManager {
 	updateStat(socket, statName, statValue, updateUI) {
 		socket.emit(PACKET.STAT_UPDATE, statName, statValue, updateUI | 0);
 	}
+	updateXP(socket) {
+		socket.emit(PACKET.UPDATE_AGE,
+					socket.player.xp,
+					socket.player.maxXP,
+					socket.player.age);
+	}
 	updateMaterials(socket) {
 		this.updateStat(socket, "stone", socket.player.stone, true);
 		this.updateStat(socket, "wood", socket.player.wood, true);
 		this.updateStat(socket, "food", socket.player.food, true);
+		this.updateXP(socket);
 	}
 	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"

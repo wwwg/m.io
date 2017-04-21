@@ -19,6 +19,7 @@ module.exports = {
     CLAN_REQ_JOIN: "10",
     CLAN_ACC_JOIN: "11",
     CLAN_KICK: "12",
+    UPDATE_AGE: "15",
     CHAT: "ch",
     CLAN_DEL: "ad",
     PLAYER_SET_CLAN: "st",
