@@ -135,7 +135,8 @@ class Player {
 		this.weaponCode = 0; // 0 == Default hammer
 		this.buildCode = -1; // -1 == No build item
 		this.skinCode = 0; // 0 == No skin / hat
-		this.shopItem = null;
+		this.hat = null;
+		this.hats = [];
 
 		// Movement based properties
 		this.dirX = null;
