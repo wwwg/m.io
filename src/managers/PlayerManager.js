@@ -120,6 +120,7 @@ class PlayerManager {
 		if (p2.player.isDead) {
 			p2.player.alertDeath();
 			me.kill(p2);
+			p1.player.killScore(p2);
 		} else {
 			// Just update health
 			this.updateHealth(p2);

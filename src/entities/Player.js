@@ -63,6 +63,17 @@ class Player {
 		var me = this;
 		me.health -= attacker.player.damage;
 	}
+	killScore(victim) {
+		var inc = 0;
+		if (victim.player) {
+			if (victim.player.score === 0) {
+				inc = 10;
+			} else if (victim.player.score > 10) {
+				inc = victim.player.score / 1.5;
+			}
+		}
+		this.score = inc;
+	}
 	get isDead() {
 		return (this.health <= 0);
 	}
