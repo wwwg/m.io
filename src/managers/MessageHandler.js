@@ -84,7 +84,11 @@ class MessageHandler {
 		if (isBuying && id) {
 			log.all(socket.player.name + " attempted to buy item " + id);
 		} else if (!isBuying) {
-			//
+			if (socket.player.hasHat(id)) {
+				log.all(socket.player.name + " is equipting hat" + id);
+			} else {
+				me.manager.close(socket, "Bad equipt packet");
+			}
 		} else {
 			// Invalid ID, close connection
 			me.manager.close(socket, "Bad shop packet");
