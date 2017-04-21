@@ -40,6 +40,11 @@ class PlayerManager {
 	updateStat(socket, statName, statValue, updateUI) {
 		socket.emit(PACKET.STAT_UPDATE, statName, statValue, updateUI | 0);
 	}
+	updateMaterials(socket) {
+		this.updateStat(socket, "stone", socket.player.stone, true);
+		this.updateStat(socket, "wood", socket.player.wood, true);
+		this.updateStat(socket, "food", socket.player.food, true);
+	}
 	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"
 		var x = player.player.x;
@@ -85,6 +90,8 @@ class PlayerManager {
 		// Update player stats
 		socket.player.gather(object,
 							this.gameServer.config.gatherMultiplier);
+		// Send the player their new stats
+		this.updateMaterials(socket);
 	}
 	getBySID(sid) {
 		for (var i = 0; i < this.players.length; ++i) {
