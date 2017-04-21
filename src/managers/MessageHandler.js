@@ -83,9 +83,11 @@ class MessageHandler {
 		var item = this.store.getItemById(id);
 		if (isBuying && id) {
 			log.all(socket.player.name + " attempted to buy item " + id);
+		} else if (!isBuying) {
+			//
 		} else {
 			// Invalid ID, close connection
-			me.manager.close(socket, "Bad shop ID");
+			me.manager.close(socket, "Bad shop packet");
 		}
 	}
 	notificationResponse(socket, sid, join) {

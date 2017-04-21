@@ -77,6 +77,13 @@ class Player {
 	get isDead() {
 		return (this.health <= 0);
 	}
+	hasHat(id) {
+		for (var i = 0; i < this.hats.length; ++i) {
+			if (this.hats[i].id == id)
+				return true;
+		}
+		return false;
+	}
 	alertDeath() {
 		this.socket.emit("11");
 	}
