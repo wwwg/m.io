@@ -60,6 +60,10 @@ class PlayerManager {
 						 socket.player.health);
 		}
 	}
+	kill(socket) {
+		socket.player.alive = false;
+		// TODO: Maybe add more kill handling
+	}
 	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"
 		var x = player.player.x;
@@ -114,6 +118,7 @@ class PlayerManager {
 		var me = this;
 		if (p2.player.isDead) {
 			p2.player.alertDeath();
+			me.kill(p2);
 		} else {
 			// Just update health
 			this.updateHealth(p2);
