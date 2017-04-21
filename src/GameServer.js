@@ -145,8 +145,8 @@ class GameServer {
 			for (var i = 0; i < me.manager.players.length; ++i) {
 				var p = me.manager.players[i];
 				if (p.player.alive) {
+					var al = me.phys.getAttackLocation(p);
 					if (p.player.attackingState) {
-						var al = me.phys.getAttackLocation(p);
 						var objn = me.objs.objs;
 						for (var j = 0; j < objn.length; ++j) {
 							var o = objn[j];
@@ -159,11 +159,22 @@ class GameServer {
 								me.manager.hitObject(p, o);
 							}
 						}
-						// Alert nearby players of the attack start
 						var near = p.player.playersNear;
 						for (var j = 0; j < near.length; ++j) {
 							if (p.player.attackingState) {
+								// Alert nearby players of the attack start
 								me.manager.sendAttack(near[j], p, p.player.hitObj);
+								// Handle player attacking
+								var playerHit = me.phys.inEntity({
+									x: al[0],
+									y: al[1]
+								}, {
+									x: near[j].player.x,
+									y: near[j].player.y
+								}, near[j].player.scale);
+								if (playerHit) {
+									me.manager.hitPlayer(p, near[j]);
+								}
 							}
 						}
 					}

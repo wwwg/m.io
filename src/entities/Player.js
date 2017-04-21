@@ -70,7 +70,7 @@ class Player {
 		this.objsNear = [];
 		this.dataCache = null;
 		this.angle = 0;
-		this.attackDist = 6;
+		this.attackDist = 10;
 		this.xpGain = 1;
 		this.x = -1;
 		this.y = -1;

@@ -100,6 +100,9 @@ class PlayerManager {
 		// Send the player their new stats
 		this.updateMaterials(socket);
 	}
+	hitPlayer(p1, p2) {
+		log.all(p1.player.name + ' has hit ' + p2.player.name);
+	}
 	getBySID(sid) {
 		for (var i = 0; i < this.players.length; ++i) {
 			if (this.players[i].player.sid === sid) return this.players[i];
