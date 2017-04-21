@@ -52,6 +52,14 @@ class PlayerManager {
 		this.updateStat(socket, "food", socket.player.food, true);
 		this.updateXP(socket);
 	}
+	updateHealth(socket) {
+		var near = socket.player.playersNear;
+		for (var i = 0; i < near.length; ++i) {
+			near[i].emit(PACKET.UPDATE_HEALTH,
+						 socket.player.sid,
+						 socket.player.health);
+		}
+	}
 	getNearPlayers(player, avoidSelf) {
 		// Get all the players close to "player"
 		var x = player.player.x;
