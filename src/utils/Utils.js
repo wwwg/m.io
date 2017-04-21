@@ -5,7 +5,8 @@ class Utils {
     static serializePlayerArray(arr) {
         var serialData = [];
         for (var i = 0; i < arr.length; ++i) {
-            serialData = serialData.concat(arr[i].player.getUpdateData());
+            if (arr[i].player.alive)
+                serialData = serialData.concat(arr[i].player.getUpdateData());
         }
         return serialData;
     }
