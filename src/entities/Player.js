@@ -119,7 +119,7 @@ class Player {
 		this.maxXP = 100;
 		this.xpIncrease = 60;
 		this.age = 0;
-		this.damage = 1;
+		this.damage = 5;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";
