@@ -66,6 +66,9 @@ class Player {
 	get isDead() {
 		return (me.health <= 0);
 	}
+	alertDeath() {
+		this.socket.emit("11");
+	}
 	constructor(socket, sid) {
 		var me = this;
 
