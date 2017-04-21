@@ -11,10 +11,10 @@ Here is a list of the features implemented in m.io, please note that the project
 - Leaderboard: ✓
 - Minimap: ✓
 - Chat: ✓
+- PvP: ✓
 - Day / night cycle: Partial support
 - Game Objects: Partial support
 - Robust physics engine: ✘
-- PvP: ✘
 - Shop: ✘
 - Items: ✘
 - Projectile Physics: ✘
