@@ -17,6 +17,7 @@ module.exports = {
     PLAYER_LEAVE_CLAN: "9",
     STAT_UPDATE: "9",
     CLAN_REQ_JOIN: "10",
+    UPDATE_HEALTH: "10",
     CLAN_ACC_JOIN: "11",
     CLAN_KICK: "12",
     UPDATE_AGE: "15",
