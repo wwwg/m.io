@@ -1,6 +1,14 @@
 var its = require('../utils/shopItems');
 
 class Store {
+	getItemById(id) {
+		var me = this;
+		for (var i = 0; i < me.itemArray.length; ++i) {
+			if (me.itemArray[i].id == id)
+				return me.itemArray[i];
+		}
+		return null;
+	}
 	constructor(serv) {
 		var me = this;
 		this.serv = serv;
