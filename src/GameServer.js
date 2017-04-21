@@ -171,7 +171,7 @@ class GameServer {
 								}, {
 									x: near[j].player.x,
 									y: near[j].player.y
-								}, near[j].player.scale * 1.5);
+								}, near[j].player.scale * 2);
 								if (playerHit && p != near[j]) {
 									me.manager.hitPlayer(p, near[j]);
 								}

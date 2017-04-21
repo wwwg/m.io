@@ -64,7 +64,7 @@ class Player {
 		me.health -= attacker.player.damage;
 	}
 	get isDead() {
-		return (me.health <= 0);
+		return (this.health <= 0);
 	}
 	alertDeath() {
 		this.socket.emit("11");
