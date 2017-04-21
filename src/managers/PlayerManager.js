@@ -113,7 +113,7 @@ class PlayerManager {
 		p2.player.hitFrom(p1);
 		var me = this;
 		if (p2.player.isDead) {
-			// TODO: Handle player death
+			p2.player.alertDeath();
 		} else {
 			// Just update health
 			this.updateHealth(p2);
