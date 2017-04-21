@@ -1,9 +1,10 @@
 const PACKET = require('../utils/packetCodes');
 class Leaderboard {
     sortPlayers() {
-        return this.gameServer.manager.players.sort((a, b) => {
+        this.gameServer.manager.players = this.gameServer.manager.players.sort((a, b) => {
             return a.player.score + b.player.score;
         });
+        return this.gameServer.manager.players;
     }
     getTopPlayers() {
         var len = this.gameServer.config.leaderboardCount;
