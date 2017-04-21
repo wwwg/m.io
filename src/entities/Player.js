@@ -54,7 +54,7 @@ class Player {
 		if (me.xp > me.maxXP) {
 			// Level up
 			me.maxXP += me.xpIncrease;
-			me.xpIncrease *= 1.25;
+			me.xpIncrease *= 1.1;
 			me.xp = 0;
 			me.age++;
 		}

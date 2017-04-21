@@ -13,6 +13,7 @@ var ClanManager = require('./managers/ClanManager');
 var Minimap = require("./managers/MinimapManager");
 var GameObjManager = require('./managers/GameObjManager');
 var PhysicsEngine = require('./utils/PhysicsEngine');
+var Store = require('./managers/Store');
 const PACKET = require('./utils/packetCodes');
 
 class GameServer {
@@ -254,6 +255,7 @@ class GameServer {
 			this.minimap = new Minimap(me);
 			this.objs = new GameObjManager(me);
 			this.phys = new PhysicsEngine(me);
+			this.store = new Store(me);
 			this.objs.generateObjects(config.gameObjects);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
