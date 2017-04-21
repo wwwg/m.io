@@ -67,6 +67,9 @@ class GameServer {
 			socket.on(PACKET.PLAYER_ATTACK, (atk, buildDir) => {
 				return me.msgHandler.attack.call(me, socket, atk, buildDir);
 			});
+			socket.on(PACKET.ITEM_BUY, (isBuying, id) => {
+				return me.msgHandler.attemptBuy.call(me, socket, isBuying, id);
+			});
 			socket.on('disconnect', () => {
 				return me.msgHandler.disconn.call(me, socket);
 			});

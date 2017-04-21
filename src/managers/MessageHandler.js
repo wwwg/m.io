@@ -79,6 +79,15 @@ class MessageHandler {
 		this.io.emit(PACKET.CLAN_DEL, clan.name);
 		this.clans.remove(clan.name);
 	}
+	attemptBuy(socket, isBuying, id) {
+		var item = this.store.getItemById(id);
+		if (isBuying && id) {
+			log.all(socket.player.name + " attempted to buy item " + id);
+		} else {
+			// Invalid ID, close connection
+			me.manager.close(socket, "Bad shop ID");
+		}
+	}
 	notificationResponse(socket, sid, join) {
 		var p = this.manager.getBySID(sid);
 		if (!p) {
