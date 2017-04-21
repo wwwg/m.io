@@ -236,6 +236,10 @@ class GameServer {
 			if (!config.gatherMultiplier) {
 				config.gatherMultiplier = 1;
 			}
+			if (!config.saveStats) {
+				// Whether or not player's stats are saved upon death
+				config.saveStats = false;
+			}
 			var me = this;
 			this.config = config;
 			this.atkInterval = config.tickInterval * 2;

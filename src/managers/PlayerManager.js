@@ -62,6 +62,7 @@ class PlayerManager {
 	}
 	kill(socket) {
 		socket.player.alive = false;
+		log.all(socket.player.name + ' has been killed');
 		// TODO: Maybe add more kill handling
 	}
 	getNearPlayers(player, avoidSelf) {

@@ -158,32 +158,36 @@ class MessageHandler {
 		var me = this;
 		if (!this.msgHandler.checkConnection.call(me, socket))
 			return;
-		if (socket.player.spawned) {
-			this.manager.close(socket, 'You are already spawned.');
+		// Player can spawn, update their name
+		var name = data.name.trim();
+		if (name === "") 
+			name = this.config.unknownName;
+		socket.player.name = name;
+		// Update player coords. This will be better eventually
+		socket.player.x = Utils.rand(this.config.mapSize);
+		socket.player.y = Utils.rand(this.config.mapSize);
+		if (!socket.player.spawned) {
+			// Send player data to player
+			me.manager.addSelfPlayer(socket);
+			// New players get an empty update packet
+			socket.player.spawned = true;
+			for (var i = 0; i < me.clans.clans.length; ++i) {
+				socket.emit(PACKET.CLAN_ADD, me.clans.clans[i].serialize());
+			}
 		} else {
-			// Player can spawn, update their name
-			var name = data.name.trim();
-			if (name === "") 
-				name = this.config.unknownName;
-			socket.player.name = name;
-			// Update player coords. This will be better eventually
-			socket.player.x = Utils.rand(this.config.mapSize);
-			socket.player.y = Utils.rand(this.config.mapSize);
-			
-			var me = this;
-			me.manager.sendStart(socket);
-			setTimeout(() => {
-				// Send player data to player
-				me.manager.addSelfPlayer(socket);
-				// New players get an empty update packet
-				me.manager.sendRawUpdate(socket, []);
-				log.all("Spawned player with name", socket.player.name);
-				socket.player.alive = true;
-				for (var i = 0; i < me.clans.clans.length; ++i) {
-					this.io.emit(PACKET.CLAN_ADD, me.clans.clans[i].serialize());
-				}
-			}, 10);
+			// Player is respawning
+			socket.player.resetPlayer(me.config.saveStats);
 		}
+		setTimeout(() => {
+			me.manager.sendRawUpdate(socket, []);
+			log.all("Spawned player with name", socket.player.name);
+			socket.player.alive = true;
+			me.manager.updateHealth(socket);
+			socket.emit(PACKET.UPDATE_HEALTH,
+						socket.player.sid,
+						socket.player.health);
+			me.manager.sendStart(socket);
+		}, 10);
 	}
 	constructor(gameServer) {
 		this.gameServer = gameServer;

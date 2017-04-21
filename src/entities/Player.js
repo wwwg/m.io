@@ -69,6 +69,27 @@ class Player {
 	alertDeath() {
 		this.socket.emit("11");
 	}
+	resetPlayer(preserveStats) {
+		this.health = 100;
+		this.maxHealth = 100;
+		this.alive = true;
+		this.downX = false;
+		this.downY = false;
+		this.damage = 5;
+
+		if (preserveStats === false) {
+			this.score = 0;
+			this.stone = 0;
+			this.wood = 0;
+			this.food = 0;
+			this.gatherRate = 1;
+			this.angle = 0;
+			this.age = 0;
+			this.xp = 0;
+			this.maxXP = 100;
+			this.xpIncrease = 60;
+		}
+	}
 	constructor(socket, sid) {
 		var me = this;
 
