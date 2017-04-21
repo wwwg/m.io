@@ -63,6 +63,9 @@ class Player {
 		var me = this;
 		me.health -= attacker.player.damage;
 	}
+	get isDead() {
+		return (me.health <= 0);
+	}
 	constructor(socket, sid) {
 		var me = this;
 
