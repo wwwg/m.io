@@ -59,19 +59,18 @@ class Player {
 			me.age++;
 		}
 	}
+	hitFrom(attacker) {
+		var me = this;
+		me.health -= attacker.player.damage;
+	}
 	constructor(socket, sid) {
 		var me = this;
 
 		// Enviroment based properties
-		this.autoAtk = false;
-		this.attacking = false;
-		this.hitObj = false;
 		this.playersNear = [];
 		this.objsNear = [];
 		this.dataCache = null;
 		this.angle = 0;
-		this.attackDist = 10;
-		this.xpGain = 1;
 		this.x = -1;
 		this.y = -1;
 
@@ -93,10 +92,6 @@ class Player {
 		this.food = 0;
 		this.score = 0; // Score is the same as gold
 		this.gatherRate = 1;
-		this.xp = 0;
-		this.maxXP = 100;
-		this.xpIncrease = 60;
-		this.age = 0;
 
 		// Item based properties
 		this.weaponCode = 0; // 0 == Default hammer
@@ -113,6 +108,18 @@ class Player {
 		this.team = null;
 		this.clan = null;
 		this.joiningClan = false;
+
+		// PvP based properties
+		this.attackDist = 10;
+		this.xpGain = 1;
+		this.autoAtk = false;
+		this.attacking = false;
+		this.hitObj = false;
+		this.xp = 0;
+		this.maxXP = 100;
+		this.xpIncrease = 60;
+		this.age = 0;
+		this.damage = 1;
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";
