@@ -58,7 +58,9 @@ class PhysicsEngine {
 		var inBox = false;
 		for (var j = 0; j < me.manager.players.length; ++j) {
 			var p2 = me.manager.players[j];
-			if (p == p2 || p2.alive === false)
+			if (p == p2
+				|| p2.player.alive === false
+				|| p2.player.spawned === false)
 				continue;
 			var px = p2.player.x;
 			var py = p2.player.y;
