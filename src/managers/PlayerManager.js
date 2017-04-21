@@ -110,7 +110,8 @@ class PlayerManager {
 	}
 	hitPlayer(p1, p2) {
 		log.all(p1.player.name + ' has hit ' + p2.player.name);
-		p2.hitFrom(p1);
+		p2.player.hitFrom(p1);
+		this.updateHealth(p2);
 	}
 	getBySID(sid) {
 		for (var i = 0; i < this.players.length; ++i) {
