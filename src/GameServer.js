@@ -159,7 +159,7 @@ class GameServer {
 								me.manager.hitObject(p, o);
 							}
 						}
-						var near = p.player.playersNear;
+						var near = me.manager.players;
 						for (var j = 0; j < near.length; ++j) {
 							if (p.player.attackingState) {
 								// Alert nearby players of the attack start
@@ -171,8 +171,8 @@ class GameServer {
 								}, {
 									x: near[j].player.x,
 									y: near[j].player.y
-								}, near[j].player.scale);
-								if (playerHit) {
+								}, near[j].player.scale * 1.5);
+								if (playerHit && p != near[j]) {
 									me.manager.hitPlayer(p, near[j]);
 								}
 							}
