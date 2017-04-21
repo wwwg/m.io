@@ -20,6 +20,7 @@ module.exports = {
     UPDATE_HEALTH: "10",
     CLAN_ACC_JOIN: "11",
     CLAN_KICK: "12",
+    ITEM_BUY: "13",
     UPDATE_AGE: "15",
     CHAT: "ch",
     CLAN_DEL: "ad",
