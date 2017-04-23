@@ -5,7 +5,7 @@ class Weapon {
 	}
 	constructor(id) {
 		this.id = id;
-		this.effect = () => {
+		this.effect = me => {
 			throw new Error('Weapon effect not set.');
 		}
 	}

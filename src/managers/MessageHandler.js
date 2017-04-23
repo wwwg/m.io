@@ -148,7 +148,7 @@ class MessageHandler {
 				}
 				break;
 			case 3:
-				// TODO: handle age 1 upgrades
+				// TODO: handle age 3 upgrades
 				break;
 		}
 		if (socket) {

@@ -141,7 +141,7 @@ class Player {
 	setWeapon(weapon) {
 		var me = this;
 		me.weapon = weapon;
-		me.weapon.effect.call(me);
+		me.weapon.effect.call(me, me);
 	}
 	constructor(socket, sid, gameServer) {
 		var me = this;
