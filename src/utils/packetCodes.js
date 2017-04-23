@@ -10,6 +10,7 @@ module.exports = {
     PLAYER_REMOVE: "4",
     LEADERS_UPDATE: "5",
     LOAD_GAME_OBJ: "6",
+    PLAYER_UPGRADE: "6",
     GATHER_ANIM: "7",
     AUTO_ATK: "7",
     WIGGLE: "8",
