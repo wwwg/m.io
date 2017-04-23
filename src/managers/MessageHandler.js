@@ -184,8 +184,6 @@ class MessageHandler {
 		socket.player.x = Utils.rand(this.config.mapSize);
 		socket.player.y = Utils.rand(this.config.mapSize);
 		if (!socket.player.spawned) {
-			// Send player data to player
-			me.manager.addSelfPlayer(socket);
 			// New players get an empty update packet
 			socket.player.spawned = true;
 			for (var i = 0; i < me.clans.clans.length; ++i) {
@@ -204,6 +202,8 @@ class MessageHandler {
 						socket.player.sid,
 						socket.player.health);
 			me.manager.sendStart(socket);
+			// Send player data to player
+			me.manager.addSelfPlayer(socket);
 		}, 10);
 	}
 	constructor(gameServer) {
