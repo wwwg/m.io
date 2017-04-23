@@ -95,7 +95,8 @@ class MessageHandler {
 			if (socket.player.hasHat(id)) {
 				log.all(socket.player.name + " is equipting hat " + id);
 				var i = socket.player.getHat(id);
-				socket.player.item = i;
+				socket.player.equiptHat(i);
+				this.manager.updateStore(socket, 1, item.id);
 			} else {
 				me.manager.close(socket, "Bad equipt packet");
 			}

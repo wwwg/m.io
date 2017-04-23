@@ -94,6 +94,10 @@ class Player {
 	addHat(hat) {
 		this.hats.push(hat);
 	}
+	equiptHat(hat) {
+		this.hat = hat;
+		this.skinCode = hat.id;
+	}
 	alertDeath() {
 		this.socket.emit("11");
 	}
