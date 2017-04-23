@@ -31,6 +31,9 @@ class PlayerManager {
 	updateStore(socket, type, storeId) {
 		socket.emit(PACKET.UPDATE_STORE, type, storeId);
 	}
+	sendUpgrades(socket, upgradePoints, age) {
+		socket.emit(PACKET.UPGRADES, upgradePoints, age);
+	}
 	sendAttack(to, from, hitSomething) {
 		// Serialize bool
 		hitSomething = hitSomething | 0;

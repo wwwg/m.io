@@ -164,6 +164,7 @@ class Player {
 		this.skinCode = 0; // 0 == No skin / hat
 		this.hat = null;
 		this.hats = [];
+		this.upgradePoints = 0;
 
 		// Movement based properties
 		this.dirX = null;
@@ -185,7 +186,7 @@ class Player {
 		this.xp = 0;
 		this.maxXP = 100;
 		this.xpIncrease = 60;
-		this.age = 0;
+		this.age = 1;
 		this.damage = 5;
 	}
 }
