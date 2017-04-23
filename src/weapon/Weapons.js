@@ -1,6 +1,13 @@
 class Weapon {
-	constructor() {
-		//
+	setEffect(effect) {
+		// The effect is called witihin the context of the player
+		this.effect = effect;
+	}
+	constructor(id) {
+		this.id = id;
+		this.effect = () => {
+			throw new Error('Weapon effect not set.');
+		}
 	}
 }
 class WeaponManager {

@@ -166,6 +166,7 @@ class Player {
 		this.food = 0;
 		this.score = 0; // Score is the same as gold
 		this.gatherRate = 2;
+		this.weapon = null;
 
 		// Item based properties
 		this.weaponCode = 0; // 0 == Default hammer
