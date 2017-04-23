@@ -7,6 +7,7 @@ class Hammer extends Weapons.Weapon {
 			me.gatherRate = 1;
 			me.damage = 5;
 			me.xpGain = 4;
+			me.items[0] = 0;
 		});
 	}
 }

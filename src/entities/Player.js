@@ -181,6 +181,9 @@ class Player {
 		this.hat = null;
 		this.hats = [];
 		this.upgradePoints = 0;
+		this.items = [ // Array of the player's items as IDs
+			0, 2, 4, 6
+		];
 
 		// Movement based properties
 		this.dirX = null;

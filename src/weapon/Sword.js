@@ -7,6 +7,7 @@ class Sword extends Weapons.Weapon {
 			me.gatherRate = 1;
 			me.damage = 15;
 			me.xpGain = 5;
+			me.items[0] = 2;
 		});
 	}
 }
