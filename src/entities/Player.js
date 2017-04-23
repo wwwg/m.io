@@ -36,6 +36,9 @@ class Player {
 	get attackingState() {
 		return (this.autoAtk || this.attacking);
 	}
+	get canUpgrade() {
+		return (this.upgradePoints >= 0);
+	}
 	gather(object, multiplier) {
 		var me = this;
 		var rate = me.gatherRate * multiplier;
