@@ -29,5 +29,6 @@ module.exports = {
     CLAN_ADD: "ac",
     CLAN_NOTIFY: "an",
     MINIMAP: "mm",
+    UPDATE_STORE: "us",
     DISCONN: "d"
 }
