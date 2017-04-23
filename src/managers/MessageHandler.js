@@ -149,6 +149,9 @@ class MessageHandler {
 				// TODO: handle age 1 upgrades
 				break;
 		}
+		if (socket) {
+			this.manager.hideUpgrades(socket);
+		}
 	}
 	attack(socket, atk, buildDir) {
 		var me = this;

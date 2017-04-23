@@ -34,6 +34,9 @@ class PlayerManager {
 	sendUpgrades(socket, upgradePoints, age) {
 		socket.emit(PACKET.UPGRADES, upgradePoints, age);
 	}
+	hideUpgrades(socket) {
+		me.sendUpgrades(0, 0);
+	}
 	playerAge(socket) {
 		this.sendUpgrades(socket, socket.player.upgradePoints, socket.player.age);
 	}
