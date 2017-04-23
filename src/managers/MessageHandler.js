@@ -97,12 +97,16 @@ class MessageHandler {
 				var i = socket.player.getHat(id);
 				socket.player.equiptHat(i);
 				this.manager.updateStore(socket, 1, item.id);
+			} else if (id === 0) {
+				// Player unequipted their hat
+				this.manager.updateStore(socket, 1, 0);
+				socket.player.unequipt();
 			} else {
-				me.manager.close(socket, "Bad equipt packet");
+				this.manager.close(socket, "Bad equipt packet");
 			}
 		} else {
 			// Invalid ID, close connection
-			me.manager.close(socket, "Bad shop packet");
+			this.manager.close(socket, "Bad shop packet");
 		}
 	}
 	notificationResponse(socket, sid, join) {

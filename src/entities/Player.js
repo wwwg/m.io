@@ -98,6 +98,10 @@ class Player {
 		this.hat = hat;
 		this.skinCode = hat.id;
 	}
+	unequipt() {
+		this.hat = null;
+		this.skinCode = 0;
+	}
 	alertDeath() {
 		this.socket.emit("11");
 	}
