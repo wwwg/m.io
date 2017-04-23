@@ -15,6 +15,7 @@ var GameObjManager = require('./managers/GameObjManager');
 var PhysicsEngine = require('./utils/PhysicsEngine');
 var Store = require('./managers/Store');
 var attachHandlers = require('./attachHandlers');
+var Weapon = require('./weapon/Weapons');
 const PACKET = require('./utils/packetCodes');
 
 class GameServer {
@@ -216,6 +217,7 @@ class GameServer {
 			this.objs = new GameObjManager(me);
 			this.phys = new PhysicsEngine(me);
 			this.store = new Store(me);
+			this.weapons = new Weapon.WeaponManager(me);
 			this.objs.generateObjects(config.gameObjects);
 			me.gameClock = setInterval(() => {
 				me.tick.call(me); // Make sure the clock callback is called within the context of the gameServer
