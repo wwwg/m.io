@@ -2,6 +2,8 @@ var Player = require('../entities/Player');
 var log = require('../utils/Logger');
 const Utils = require('../utils/Utils');
 const PACKET = require('../utils/packetCodes');
+var Axe = require('../weapon/Axe');
+var Sword = require('../weapon/Sword');
 
 class MessageHandler {
 	checkConnection(socket) {
