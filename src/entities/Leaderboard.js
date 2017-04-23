@@ -1,8 +1,13 @@
 const PACKET = require('../utils/packetCodes');
 class Leaderboard {
     sortPlayers() {
-        this.gameServer.manager.players = this.gameServer.manager.players.sort((a, b) => {
-            return a.player.score + b.player.score;
+        this.gameServer.manager.players.sort((a, b) => {
+            // return a.player.score + b.player.score;
+            if (a.player.score > b.player.score)
+                return -1;
+            if (a.player.score < b.player.score)
+                return 1;
+            return 0;
         });
         return this.gameServer.manager.players;
     }
@@ -23,6 +28,8 @@ class Leaderboard {
         var me = this;
         var lb = me.getTopPlayers(me.sortPlayers());
         var data = [];
+        if (lb[0])
+            console.log(lb[0].player.name);
         for (var i = 0; i < lb.length; ++i) {
             if (lb[i].player.alive)
                 data = data.concat(me.serializePlayer(lb[i]));

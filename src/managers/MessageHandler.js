@@ -157,7 +157,6 @@ class MessageHandler {
 		}
 	}
 	clanCreate(socket, clanName) {
-		// TODO: handle clan creation attempts
 		if (!this.clans.clanExists(clanName)) {
 			// It's safe to add the clan
 			this.clans.add(clanName);
