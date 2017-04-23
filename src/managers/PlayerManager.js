@@ -28,6 +28,9 @@ class PlayerManager {
 	sendObj(socket, data) {
 		socket.emit(PACKET.LOAD_GAME_OBJ, data);
 	}
+	updateStore(socket, type, storeId) {
+		socket.emit(PACKET.UPDATE_STORE, type, storeId);
+	}
 	sendAttack(to, from, hitSomething) {
 		// Serialize bool
 		hitSomething = hitSomething | 0;
