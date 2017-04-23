@@ -128,7 +128,7 @@ class Player {
 			this.hat = null;
 		}
 	}
-	constructor(socket, sid) {
+	constructor(socket, sid, gameServer) {
 		var me = this;
 
 		// Enviroment based properties
@@ -146,6 +146,7 @@ class Player {
 		this.connected = false;
 		this.spawned = false;
 		this.alive = false;
+		this.gameServer = gameServer;
 
 		// Player statistics based properties
 		this.health = 100;

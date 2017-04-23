@@ -150,7 +150,7 @@ class PlayerManager {
 		}
 	}
 	add(socket) {
-		socket.player = new Player(socket, this.players.length);
+		socket.player = new Player(socket, this.players.length, this.gameServer);
 		this.players.push(socket);
 	}
 	remove(socket) {
