@@ -28,8 +28,6 @@ class Leaderboard {
         var me = this;
         var lb = me.getTopPlayers(me.sortPlayers());
         var data = [];
-        if (lb[0])
-            console.log(lb[0].player.name);
         for (var i = 0; i < lb.length; ++i) {
             if (lb[i].player.alive)
                 data = data.concat(me.serializePlayer(lb[i]));
