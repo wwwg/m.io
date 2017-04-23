@@ -147,7 +147,7 @@ class Player {
 		this.stone = 0;
 		this.wood = 0;
 		this.food = 0;
-		this.score = 0; // Score is the same as gold
+		this.score = 110; // Score is the same as gold
 		this.gatherRate = 1;
 
 		// Item based properties

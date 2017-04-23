@@ -2,7 +2,7 @@ var its = require('../utils/shopItems');
 
 class Store {
 	canBuyItem(socket, item) {
-		return (socket.player.score >= item.cost);
+		return (socket.player.score >= item.price);
 	}
 	getItemById(id) {
 		var me = this;
