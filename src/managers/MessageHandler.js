@@ -83,6 +83,13 @@ class MessageHandler {
 		var item = this.store.getItemById(id);
 		if (isBuying && id) {
 			log.all(socket.player.name + " attempted to buy item " + id);
+			if (this.store.canBuyItem(socket, item)) {
+				socket.player.addHat(item);
+				log.all(socket.player.name + ' has purchased item ' + item.id);
+			} else {
+				// The player can't buy this item
+				log.all(socket.player.name + ' can\'t purchase item ' + item.id);
+			}
 		} else if (!isBuying) {
 			if (socket.player.hasHat(id)) {
 				log.all(socket.player.name + " is equipting hat" + id);

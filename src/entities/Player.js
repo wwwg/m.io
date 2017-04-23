@@ -91,6 +91,9 @@ class Player {
 		}
 		return null;
 	}
+	addHat(hat) {
+		this.hats.push(hat);
+	}
 	alertDeath() {
 		this.socket.emit("11");
 	}
@@ -113,6 +116,8 @@ class Player {
 			this.xp = 0;
 			this.maxXP = 100;
 			this.xpIncrease = 60;
+			this.hats = [];
+			this.hat = null;
 		}
 	}
 	constructor(socket, sid) {

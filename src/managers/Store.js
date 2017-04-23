@@ -1,6 +1,9 @@
 var its = require('../utils/shopItems');
 
 class Store {
+	canBuyItem(socket, item) {
+		return (socket.player.score >= item.cost);
+	}
 	getItemById(id) {
 		var me = this;
 		for (var i = 0; i < me.itemArray.length; ++i) {
