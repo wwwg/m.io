@@ -131,27 +131,27 @@ class MessageHandler {
 	doUpgrade(socket, id) {
 		console.log(socket.player.name + ' tried to upgrade with id ' + id);
 		var age = socket.player.age;
-		console.log(age);
-		switch (age) {
-			case 0:
+		var pts = socket.player.upgradePoints;
+		if (pts < 1) {
+			return this.manager.close(socket, "Bad upgrade points");
+		}
+		switch (pts) {
 			case 1:
-				this.manager.close(socket, "Wrong upgrade age");
-				break;
-			case 2:
 				if (id == 1) {
 					// Player chose the axe
 					socket.player.setWeapon(new Axe);
 				} else if (id == 2) {
 					socket.player.setWeapon(new Sword);
 				} else {
-					this.manager.close(socket, "Invalid upgrade ID");
+					return this.manager.close(socket, "Invalid upgrade ID");
 				}
 				break;
-			case 3:
-				// TODO: handle age 3 upgrades
+			case 2:
+				// TODO: handle later upgrades
 				break;
 		}
-		if (socket) {
+		socket.player.upgradePoints--;
+		if (socket && socket.player.upgradePoints == 0) {
 			this.manager.hideUpgrades(socket);
 		}
 	}
