@@ -3,7 +3,7 @@ class Sword extends Weapons.Weapon {
 	constructor() {
 		super(0);
 		this.setEffect(() => {
-			this.weaponCode = 1;
+			this.weaponCode = 2;
 			this.gatherRate = 2;
 			this.damage = 15;
 		});
