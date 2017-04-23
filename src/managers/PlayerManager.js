@@ -126,16 +126,21 @@ class PlayerManager {
 		this.updateMaterials(socket);
 	}
 	hitPlayer(p1, p2) {
-		log.all(p1.player.name + ' has hit ' + p2.player.name);
-		p2.player.hitFrom(p1);
-		var me = this;
-		if (p2.player.isDead) {
-			p2.player.alertDeath();
-			me.kill(p2);
-			p1.player.killScore(p2);
-		} else {
-			// Just update health
-			this.updateHealth(p2);
+		// Only take damage if players are on different teams
+		if (!p1.player.clan ||
+			!p2.player.clan ||
+			!(p1.player.clan.name === p2.player.clan.name)) {
+			log.all(p1.player.name + ' has hit ' + p2.player.name);
+			p2.player.hitFrom(p1);
+			var me = this;
+			if (p2.player.isDead) {
+				p2.player.alertDeath();
+				me.kill(p2);
+				p1.player.killScore(p2);
+			} else {
+				// Just update health
+				this.updateHealth(p2);
+			}
 		}
 	}
 	getBySID(sid) {
