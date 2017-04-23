@@ -173,7 +173,6 @@ class Player {
 		this.food = 0;
 		this.score = 0; // Score is the same as gold
 		this.gatherRate = 2;
-		this.setWeapon(new Hammer); // Set weapon to hammer (default)
 
 		// Item based properties
 		this.weaponCode = 0; // 0 == Default hammer
@@ -205,6 +204,8 @@ class Player {
 		this.xpIncrease = 60;
 		this.age = 1;
 		this.damage = 5;
+
+		this.setWeapon(new Hammer); // Set weapon to hammer (default)
 	}
 }
 Player.ID_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}.,<>';:/";

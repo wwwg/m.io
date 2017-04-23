@@ -4,8 +4,9 @@ class Axe extends Weapons.Weapon {
 		super(1);
 		this.setEffect(me => {
 			me.weaponCode = 1;
-			me.gatherRate = 6;
+			me.gatherRate = 3;
 			me.damage = 5;
+			me.xpGain = 9;
 		});
 	}
 }
