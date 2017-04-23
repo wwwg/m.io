@@ -57,7 +57,12 @@ class Player {
 			me.xpIncrease *= 1.1;
 			me.xp = 0;
 			me.age++;
+			me.onAge();
 		}
+	}
+	onAge() {
+		this.upgradePoints++;
+		this.gameServer.manager.playerAge(this.socket);
 	}
 	hitFrom(attacker) {
 		var me = this;

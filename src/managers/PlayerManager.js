@@ -34,6 +34,9 @@ class PlayerManager {
 	sendUpgrades(socket, upgradePoints, age) {
 		socket.emit(PACKET.UPGRADES, upgradePoints, age);
 	}
+	playerAge(socket) {
+		this.sendUpgrades(socket, socket.player.upgradePoints, socket.player.age);
+	}
 	sendAttack(to, from, hitSomething) {
 		// Serialize bool
 		hitSomething = hitSomething | 0;
