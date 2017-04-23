@@ -13,10 +13,13 @@ Here is a list of the features implemented in m.io, please note that the project
 - Chat: ✓
 - PvP: ✓
 - Shop: ✓
+- Hats: ✓
+- Weapons: ✓
 - Day / night cycle: Partial support
 - Game Objects: Partial support
-- Robust physics engine: ✘
-- Items: ✘
+- Upgrades: Partial support
+- Bow: ✘
+- Buildable structures (walls, etc): ✘
 - Projectile Physics: ✘
 <br>
 Everything marked as an X is a planned feature. Other unique features are planned such as multi world servers and game modes.
