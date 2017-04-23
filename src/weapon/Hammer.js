@@ -9,3 +9,4 @@ class Hammer extends Weapons.Weapon {
 		});
 	}
 }
+module.exports = Hammer;
