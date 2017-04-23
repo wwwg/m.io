@@ -126,6 +126,9 @@ class MessageHandler {
 			}
 		}
 	}
+	doUpgrade(socket, id) {
+		console.log(socket.player.name + ' tried to upgrade with id ' + id);
+	}
 	attack(socket, atk, buildDir) {
 		var me = this;
 		if (!buildDir) {

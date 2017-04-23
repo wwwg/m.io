@@ -53,6 +53,9 @@ module.exports = (me, socket) => {
 	socket.on(PACKET.ITEM_BUY, (isBuying, id) => {
 		return me.msgHandler.attemptBuy.call(me, socket, isBuying, id);
 	});
+	socket.on(PACKET.PLAYER_UPGRADE, id => {
+		return me.msgHandler.doUpgrade.call(me, socket, id);
+	});
 	socket.on('disconnect', () => {
 		return me.msgHandler.disconn.call(me, socket);
 	});
