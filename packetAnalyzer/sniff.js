@@ -113,7 +113,7 @@
                     // log("raw minimap data", data);
                 });
                 s.on('6', data => {
-                    log('load game object', data);
+                    // log('load game object', data);
                 });
                 s.on('7', (sid, attacking, weapon) => {
                     if (sid === mySid) {

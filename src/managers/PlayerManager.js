@@ -40,14 +40,15 @@ class PlayerManager {
 	playerAge(socket) {
 		this.sendUpgrades(socket, socket.player.upgradePoints, socket.player.age);
 	}
-	sendAttack(to, from, hitSomething) {
-		// Serialize bool
-		hitSomething = hitSomething | 0;
+	sendAttack(to, from, hit) {
+		var wcode = from.player.weaponCode;
+		if (wcode == 1)
+			wcode = 0;
 		// Emit attack
 		to.emit(PACKET.GATHER_ANIM,
 				from.player.sid,
-				hitSomething,
-				from.player.weaponCode);
+				hit | 0,
+				wcode);
 	}
 	updateStat(socket, statName, statValue, updateUI) {
 		socket.emit(PACKET.STAT_UPDATE, statName, statValue, updateUI | 0);
@@ -108,7 +109,8 @@ class PlayerManager {
 					}
 			}
 		}
-		player.player.playersNear = near;
+		if (!avoidSelf)
+			player.player.playersNear = near;
 		return near;
 	}
 	hitObject(socket, object) {
