@@ -1,4 +1,5 @@
 var Hammer = require('../weapon/Hammer');
+var Items = require('../utils/Items');
 
 class Player {
 	static getId() {
@@ -150,6 +151,14 @@ class Player {
 				me.wood >= item.costs.wood &&
 				me.food >= item.costs.food
 			);
+	}
+	useCurrentItem() {
+		var me = this;
+		var item = Items.items[me.items[me.buildCode]];
+		if (item) {
+			item.use(me);
+		}
+		me.gameServer.manager.updateHealth(me.socket);
 	}
 	constructor(socket, sid, gameServer) {
 		var me = this;

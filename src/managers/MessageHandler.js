@@ -159,13 +159,13 @@ class MessageHandler {
 	}
 	attack(socket, atk, buildDir) {
 		var me = this;
-		if (!buildDir) {
-			// The player has actually attacked
-			if (socket.player.alive) {
-				socket.player.attacking = !!atk; // Convert to bool
+		if (socket.player.alive) {
+			if (socket.player.buildCode === -1) {
+				socket.player.attacking = !!atk; // Regular attack
+			} else {
+				// Player is attempting to build something
+				socket.player.useCurrentItem();
 			}
-		} else {
-			// TODO: handle player building
 		}
 	}
 	clanKick(socket, sid) {
