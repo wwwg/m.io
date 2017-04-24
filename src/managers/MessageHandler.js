@@ -250,10 +250,16 @@ class MessageHandler {
 	}
 	select(socket, index, isWeapon) {
 		log.all(socket.player.name + " has selected item " + index);
-		if (index >= 1) {
-			// The player is holding their weapon
-			socket.player.buildCode = -1;
-			return;
+		if (isWeapon) {
+			if (socket.player.weapons.includes(index)) {
+				socket.player.weaponCode = index;
+			} else {
+				return me.manager.close(socket, "Invalid weapon code");
+			}
+		} else {
+			if (socket.player.items.includes(index)) {
+				// TODO: handle item equipting
+			}
 		}
 	}
 	constructor(gameServer) {
