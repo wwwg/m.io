@@ -9,6 +9,7 @@ module.exports = {
     PLAYER_MOVE: "3",
     PLAYER_REMOVE: "4",
     LEADERS_UPDATE: "5",
+    SELECT_ITEM: "5",
     LOAD_GAME_OBJ: "6",
     PLAYER_UPGRADE: "6",
     GATHER_ANIM: "7",
