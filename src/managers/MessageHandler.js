@@ -4,6 +4,7 @@ const Utils = require('../utils/Utils');
 const PACKET = require('../utils/packetCodes');
 var Axe = require('../weapon/Axe');
 var Sword = require('../weapon/Sword');
+var Items = require('../utils/Items');
 
 class MessageHandler {
 	checkConnection(socket) {
@@ -249,6 +250,7 @@ class MessageHandler {
 		}, 10);
 	}
 	select(socket, index, isWeapon) {
+		var me = this;
 		log.all(socket.player.name + " has selected item " + index);
 		if (isWeapon) {
 			if (socket.player.weapons.includes(index)) {
@@ -257,10 +259,20 @@ class MessageHandler {
 				return me.manager.close(socket, "Invalid weapon code");
 			}
 		} else {
-			if (socket.player.items.includes(index)) {
-				// TODO: handle item equipting
+			if (index === socket.player.buildCode) {
+				socket.player.buildCode = -1;
+			} else if (socket.player.items.includes(index)) {
+				var item = Items.items[index];
+				if (item) {
+					if (socket.player.canBuild(item)) {
+						item.build(socket);
+					}
+				} else {
+					return me.manager.close(socket, "Invalid item");
+				}
 			}
 		}
+		me.manager.updateMaterials(socket);
 	}
 	constructor(gameServer) {
 		this.gameServer = gameServer;

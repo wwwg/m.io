@@ -143,6 +143,14 @@ class Player {
 		me.weapon = weapon;
 		me.weapon.effect.call(me, me);
 	}
+	canBuild(item) {
+		var me = this;
+		return (
+				me.stone >= item.costs.stone &&
+				me.wood >= item.costs.wood &&
+				me.food >= item.costs.food
+			);
+	}
 	constructor(socket, sid, gameServer) {
 		var me = this;
 
