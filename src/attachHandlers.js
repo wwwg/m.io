@@ -56,6 +56,9 @@ module.exports = (me, socket) => {
 	socket.on(PACKET.PLAYER_UPGRADE, id => {
 		return me.msgHandler.doUpgrade.call(me, socket, id);
 	});
+	socket.on(PACKET.SELECT_ITEM, (index, isWeapon) => {
+		return me.msgHandler.select.call(me, socket, index, isWeapon);
+	});
 	socket.on('disconnect', () => {
 		return me.msgHandler.disconn.call(me, socket);
 	});

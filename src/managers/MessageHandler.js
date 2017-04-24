@@ -247,6 +247,14 @@ class MessageHandler {
 			me.manager.addSelfPlayer(socket);
 		}, 10);
 	}
+	select(socket, index, isWeapon) {
+		log.all(socket.player.name + " has selected item " + index);
+		if (index >= 1) {
+			// The player is holding their weapon
+			socket.player.buildCode = -1;
+			return;
+		}
+	}
 	constructor(gameServer) {
 		this.gameServer = gameServer;
 	}
