@@ -25,6 +25,7 @@ module.exports = {
     ITEM_BUY: "13",
     UPDATE_AGE: "15",
     UPGRADES: "16",
+    UPDATE_ITEMS: "17",
     CHAT: "ch",
     CLAN_DEL: "ad",
     PLAYER_SET_CLAN: "st",

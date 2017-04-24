@@ -184,6 +184,9 @@ class Player {
 		this.items = [ // Array of the player's items as IDs
 			0, 2, 4, 6
 		];
+		this.weapons = [
+			0
+		];
 
 		// Movement based properties
 		this.dirX = null;

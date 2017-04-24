@@ -37,6 +37,10 @@ class PlayerManager {
 	hideUpgrades(socket) {
 		this.sendUpgrades(socket, 0, 0);
 	}
+	syncPlayerItems(socket) {
+		socket.emit(PACKET.UPDATE_ITEMS, socket.player.items, 0);
+		socket.emit(PACKET.UPDATE_ITEMS, socket.player.weapons, 1);
+	}
 	playerAge(socket) {
 		this.sendUpgrades(socket, socket.player.upgradePoints, socket.player.age);
 	}

@@ -7,7 +7,7 @@ class Axe extends Weapons.Weapon {
 			me.gatherRate = 3;
 			me.damage = 5;
 			me.xpGain = 9;
-			me.items[0] = 1;
+			me.weapons[0] = 1;
 		});
 	}
 }

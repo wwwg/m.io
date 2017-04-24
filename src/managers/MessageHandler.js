@@ -151,6 +151,7 @@ class MessageHandler {
 				break;
 		}
 		socket.player.upgradePoints--;
+		this.manager.syncPlayerItems(socket);
 		if (socket && socket.player.upgradePoints == 0) {
 			this.manager.hideUpgrades(socket);
 		}

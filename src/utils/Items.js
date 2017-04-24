@@ -5,9 +5,7 @@ class Item {
 	}
 }
 var items = [
-	null, // Hammer
-	null, // Axe
-	new Item(2, me => { // Apple
+	new Item(0, me => { // Apple
 		me.health += 20;
 	}, false),
 	new Item(3, me => { // Cookie
