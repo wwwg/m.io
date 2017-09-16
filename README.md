@@ -1,3 +1,5 @@
+### Author's note: I'm no longer interesting in contributing to this project as I have lost interest. I will continue to maintain it as long as there are people willing to contribute.
+
 # The m.io project
 The goal of the m.io project is to create an open source Moomoo.io server implementation. m.io is only partially finished, and currently contains limited features compared to the actual game.
 
