@@ -30,11 +30,15 @@ Everything marked as an X is a planned feature. Other unique features are planne
 Because m.io is in development, ther are no current scripts to ease installation and deplyment of an m.io server. Here are manual instructions on \*nix:
 **PLEASE NOTE that running m.io requires node.js 6.0 or higher**
 ```sh
-git clone https://github.com/wwwwwwwwwwwwwwwwwwwwwwwwwwwwww/m.io.git;
+git clone https://github.com/wwwg/m.io.git;
 cd m.io;
 npm install;
 npm run test; # Will start the server on port 5000
 ```
+
+# Starting the client
+m.io is a *server*, not a client. To use the default moomoo.io client, start the server and
+in your browser visit moomoo.io/?party=127.0.01:5000
 
 # Directory roadmap
 `src/` - The server source code<br>
